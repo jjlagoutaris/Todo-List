@@ -5,23 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do</title>
-    <link rel="shortcut icon" href="/src/todoList.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../src/img/todoList.png" type="image/x-icon">
 </head>
 <body>
     <div id="header">
-        <img src="/src/todoList.png" alt="logo" class="logo">
-        <div class="title">To-Do...or Not-To-Do</div>
+        <img src="../src/img/todoList.png" alt="logo" class="logo">
+        <div class="title">To-Do or Not-To-Do</div>
     </div>
     <div id="content">
         <div class="sidebar">
             <ul>
-                <li class="link"><a href="#">Link 1</a></li>
-                <li class="link"><a href="#">Link 2</a></li>
-                <li class="link"><a href="#">Link 3</a></li>
+                <li class="link"><a href="#">Today</a></li>
+                <li class="link"><a href="#">This Week</a></li>
+                <li class="link"><a href="#">Categories</a></li>
             </ul>
         </div>
         <div class="todoList">
-            STUFF
+            <table>
+                <tr class="titles">
+                    <th>CHORES</th>
+                    <th>DUE DATE</th>
+                </tr>
+                <tr>
+                    <td class="column1">Take out the trash</td>
+                    <td class="column2">1/2/11</td>
+                </tr>
+            </table>
         </div>
     </div>
     <script src="main.js"></script>
