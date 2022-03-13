@@ -1,4 +1,59 @@
 $BODY: #3f3f3f;
+$FONT: white;
+$HEADER: pink;
+$SIDEBAR: powderblue;
+$SIDEBAR_TEXT: brown;
+$TODOLIST: gray;
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
 body{
-    background-color: $BODY;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+#header{
+    display: flex;
+    background-color: $HEADER;
+    color: $FONT;
+    font-size: 3rem;
+    gap: 1rem;
+    width: 100%;
+    .logo{
+        max-height: 4rem;
+        padding: 10px;
+    }
+}
+
+#content{
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    height: 100vh;
+    .sidebar{
+        padding: 10px;
+        background-color: $SIDEBAR;
+        ul{
+            text-align: center;
+            list-style-type: none;
+            .link{
+                padding: 10px;
+                a{
+                    text-decoration: none;
+                    color: $SIDEBAR_TEXT;
+                }
+            }
+        }
+    }
+    .todoList{
+        padding: 10px;
+        background-color: $TODOLIST;
+    }
 }
