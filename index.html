@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do</title>
+    <script src="https://kit.fontawesome.com/14ceef9952.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="../src/img/todoList.png" type="image/x-icon">
 </head>
 <body>
@@ -15,23 +16,29 @@
     <div id="content">
         <div class="sidebar">
             <ul>
-                <li class="link"><a href="#">Today</a></li>
-                <li class="link"><a href="#">This Week</a></li>
-                <li class="link"><a href="#">Categories</a></li>
+                <li class="link today"><a href="#">Today</a></li>
+                <li class="link week"><a href="#">This Week</a></li>
+                <li class="link categories"><a href="#">Categories</a></li>
             </ul>
         </div>
         <div class="todoList">
             <table>
+                
                 <tr class="titles">
-                    <th>CHORES</th>
-                    <th>DUE DATE</th>
+                    <th class="projName"">To Do</th>
+                    <th class="dueDate">DUE DATE</th>
                 </tr>
                 <tr>
                     <td class="column1">Take out the trash</td>
                     <td class="column2">1/2/11</td>
                 </tr>
+
+                <!-- <input type="datetime-local" name="dtl" id="dtl"> -->
+                
             </table>
+            <div class="addToDoBtn"><img src="../src/img/plus-circle.png" alt="add"></div>
         </div>
+        
     </div>
     <script src="main.js"></script>
 </body>
