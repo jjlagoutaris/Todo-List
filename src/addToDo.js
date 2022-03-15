@@ -1,5 +1,7 @@
 import _ from './documentParts';
 import Todo from './todo';
+import Project from './project';
+import defaultProj from './defaultProj';
 
 const getToDoInfo = _.addToDoBtn.addEventListener('click', () => {
 
@@ -83,23 +85,42 @@ const getToDoInfo = _.addToDoBtn.addEventListener('click', () => {
 
     _.toDoList.removeChild(_.addToDoBtn);
 
+    submitBtn.addEventListener('click', addToDoToTable);
+    cancelBtn.addEventListener('click', cancelNewToDo);
+
+    return {taskName, taskDescription, taskPriority, taskDueDate, taskID};
 });
 
     // let dtl = document.querySelector('#dtl');
     // let filter_dtl = dtl.value.replace('T', '  ').replace(/-/g, '/');
 
-    // console.log(filter_dtl);
+const addToDoToTable = () => {
+    let tr = document.createElement('tr');
+    let td1 = document.createElement('td');
+    let td2 = document.createElement('td');
+    td1.classList.add('column1');
+    td2.classList.add('column2');
 
-// const addToDoToTable = #####.addEventListener('click', () => {
-//     let tr = document.createElement('tr');
-//     tr.classList.add(`${_.toDoCounter}`);
-//     let td1 = document.createElement('td');
-//     let td2 = document.createElement('td');
-//     td1.classList.add('column1');
-//     td2.classList.add('column2');
-//     tr.appendChild(td1);
-//     tr.appendChild(td2);
-//     _.table.appendChild(tr); 
-// });
+    let toDoObj = Todo(taskName.value, taskDescription.value, taskDueDate.value, 
+        taskPriority.value, _.toDoCounter);
+
+    td1.textContent = taskName.value;
+    let filteredDueDate = taskDueDate.value.replace('T', '  ').replace(/-/g, '/');
+    td2.textContent = filteredDueDate;
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+
+    defaultProj.addToList(toDoObj);
+
+    _.table.removeChild(_.table.lastChild);
+    _.table.appendChild(tr);
+    _.toDoList.appendChild(_.addToDoBtn);
+};
+
+const cancelNewToDo = () => {
+    _.table.removeChild(_.table.lastChild);
+    _.toDoList.appendChild(_.addToDoBtn);
+};
 
 export default { getToDoInfo };
