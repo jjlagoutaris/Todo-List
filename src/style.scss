@@ -1,25 +1,29 @@
 $BODY: #3f3f3f;
 $FONT: white;
-$HEADER: rgb(0, 162, 255);
-$SIDEBAR: powderblue;
-$SIDEBAR_TEXT: brown;
-$TODOLIST: white;
+$HEADER: rgba(255, 72, 0, .8);
+$SIDEBAR: rgba(255, 72, 0, .5);
+$SIDEBAR_TEXT: black;
+$TODOLIST: rgba(255, 72, 0, .2);
 
 @mixin center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
+
 body{
     height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
 }
+
 #header{
     @include center;
     justify-content: flex-start;
@@ -50,28 +54,35 @@ body{
                 a{
                     text-decoration: none;
                     color: $SIDEBAR_TEXT;
+                    text-shadow: 1px 1px white;
                 }
             }
         }
     }
     .todoList{
         @include center;
-        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 20px;
         padding: 10px;
         background-color: $TODOLIST;
         table{
             width: clamp(320px, 800px, 1000px);
             .titles{
-                font-size: 1.2rem;
+                font-size: 1.8rem;
                 text-align: left;
             }
             th{
                 padding: 10px;
             }
             td{
+                font-size: 1.4rem;
                 padding: 10px;
                 border-bottom: .1px dashed black;
             }
+        }
+        .addToDoBtn{
+            cursor: pointer;
         }
     }
 }
@@ -81,6 +92,8 @@ body{
     &::before{
         content: url('./img/checkbox-blank-outline.png');
         cursor: pointer;
+        vertical-align: middle;
+        margin-right: 10px;
     }
 }
 
@@ -92,6 +105,52 @@ body{
         content: url('./img/notebook-edit.png') + 
         url('./img/trash-can-outline.png');
         cursor: pointer;
+        vertical-align: middle;
+    }
+}
+
+label,
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
+textarea {
+    padding: 10px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container{
+    z-index: 1;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 50rem;
+    border: 1px solid black;
+    padding: 10px;
+    .btns{
+        display: flex;
+        gap: 5px;
+        .submitBtn, .cancelBtn{
+            background-color: rgb(163, 201, 188);
+            max-width: 50px;
+            padding: 10px;
+            &:hover{
+                cursor: pointer;
+                background-color: white;
+            }
+        }
+        .cancelBtn{
+            background-color: red;
+        }
     }
 }
 

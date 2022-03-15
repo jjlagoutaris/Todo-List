@@ -4,6 +4,7 @@ const Project = (title, description) => {
 
     const getTitle = () => title;
     const getDescription = () => description;
+    
     const setTitle = (newTitle) => title = newTitle; 
     const setDescription = (newDescription) => description = newDescription;
 
