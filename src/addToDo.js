@@ -1,7 +1,8 @@
 import _ from './documentParts';
 import Todo from './todo';
-import Project from './project';
+// import Project from './project';
 import defaultProj from './defaultProj';
+import format from 'date-fns/format';
 
 const getToDoInfo = _.addToDoBtn.addEventListener('click', () => {
 
@@ -105,7 +106,8 @@ const addToDoToTable = () => {
         taskPriority.value, _.toDoCounter);
 
     td1.textContent = taskName.value;
-    let filteredDueDate = taskDueDate.value.replace('T', '  ').replace(/-/g, '/');
+    let filteredDueDate = taskDueDate.value.replace('T', ' '.replace(/-/g, '/'));
+    filteredDueDate = dateFilter(filteredDueDate);
     td2.textContent = filteredDueDate;
 
     tr.appendChild(td1);
@@ -122,5 +124,21 @@ const cancelNewToDo = () => {
     _.table.removeChild(_.table.lastChild);
     _.toDoList.appendChild(_.addToDoBtn);
 };
+// 2022-03-16 03:52
+const dateFilter = (date) => {
+    let splitTimeAndDate = date.split(' ');
+    let splitDate = splitTimeAndDate[0].split('-');
+    let splitTime = splitTimeAndDate[1].split(':');
+    let fixedHour = 0;
+    if(splitTime[0] >= 0 && splitTime[0] < 12){
+        fixedHour = splitTime[0]+ ':' + splitTime[1]+'AM';
+    }
+    else{
+        fixedHour = splitTime[0]+ ':' + splitTime[1]+'PM';  
+    }
+    let fixedDate = splitDate[1] + '/' + splitDate[2] + '/' + splitDate[0];
+    let fixedTimeAndDate =  fixedDate + ' @ ' + fixedHour;
+    return fixedTimeAndDate;
+}
 
 export default { getToDoInfo };
