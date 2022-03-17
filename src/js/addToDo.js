@@ -22,30 +22,23 @@ const addToDoToTable = () => {
 
     const makeRows = () => {
         const tr = document.createElement('tr');
-        const td0 = document.createElement('td');
+        tr.classList.add('createdRow');
         const td1 = document.createElement('td');
         const td2 = document.createElement('td');
-        const td3 = document.createElement('td');
-        const td4 = document.createElement('td');
+        td1.classList.add('column1');
         td2.classList.add('column2');
 
-        td0.innerHTML = `<i class="fa-regular fa-square"></i>`;
-        td1.textContent = taskName.value;
+        td1.innerHTML += `<i class="fa-regular fa-square"></i> ${taskName.value}` ;
         if (taskDueDate.value !== ''){
             let filteredDueDate = taskDueDate.value.replace('T', ' '.replace(/-/g, '/'));
             filteredDueDate = dateFilter(filteredDueDate);
-            td2.textContent = filteredDueDate;
+            td2.innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
         }
-        td3.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
-        td4.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     
-        tr.appendChild(td0);
         tr.appendChild(td1);
         tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
 
-        return {tr, td0, td1, td2, td3, td4};
+        return {tr, td1, td2};
     };
 
     const rows = makeRows();
@@ -69,4 +62,4 @@ const cancelNewToDo = () => {
     _.toDoList.appendChild(_.addToDoBtn);
 };
 
-export default { getToDoInfo };
+// export default { getToDoInfo };
