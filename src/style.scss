@@ -58,14 +58,14 @@ body{
         }
     }
     .todoList{
-        @include center;
+        display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        gap: 20px;
-        padding: 10px;
+        align-items: center;
+        gap: 10px;
         background-color: $TODOLIST;
         table{
-            width: clamp(320px, 800px, 1000px);
+            min-width: clamp(320px, 800px, 1000px);
             .titles{
                 font-size: 1.6rem;
                 text-align: left;
@@ -93,6 +93,10 @@ body{
     text-align: right;
 }
 
+i{
+    cursor: pointer;
+}
 i.fa-arrow-down, i.fa-calendar, i.fa-exclamation{
     margin-left: 10px;
 }
+
