@@ -1,3 +1,4 @@
 import './style.scss';
-import './addToDo';
-import './documentParts';
+import './js/addToDo';
+import './js/documentParts';
+import './js/deleteToDo';

@@ -1,0 +1,14 @@
+empty checkbox:
+    <i class="fa-regular fa-square"></i>
+filled checkbox:
+    <i class="fa-regular fa-square-check"></i>
+pen-to-square:
+    <i class="fa-regular fa-pen-to-square"></i>
+trash can:
+    <i class="fa-regular fa-trash-can"></i>
+exclamation:
+    <i class="fa-solid fa-exclamation"></i>
+calendar:
+    <i class="fa-regular fa-calendar"></i>
+arrow down (for projects):
+    <i class="fa-solid fa-arrow-down"></i>
