@@ -1,5 +1,8 @@
 import Project from './project';
 
-let defaultProj = Project("Default", "The default grouping for To Dos");
+const listOfProjects = [];
+let currentProjectIndex = 0;
+const defaultProj = Project("Default", "The default grouping for To Dos", 0);
+listOfProjects.push(defaultProj);
 
-export default defaultProj;
+export { listOfProjects, currentProjectIndex, defaultProj };

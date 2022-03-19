@@ -12,3 +12,6 @@ calendar:
     <i class="fa-regular fa-calendar"></i>
 arrow down (for projects):
     <i class="fa-solid fa-arrow-down"></i>
+
+
+when project is switched, reset toDoCounter

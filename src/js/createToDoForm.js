@@ -1,10 +1,10 @@
 const createToDoForm = () => {
-    let container = document.createElement('div');
+    const container = document.createElement('div');
     container.classList.add('container');
 
-    let taskNameDiv = document.createElement('div');
-    let taskName = document.createElement('input');
-    let taskNameLabel = document.createElement('label');
+    const taskNameDiv = document.createElement('div');
+    const taskName = document.createElement('input');
+    const taskNameLabel = document.createElement('label');
     taskName.setAttribute('type', 'text');
     taskName.setAttribute('name', 'taskName');
     taskName.setAttribute('id', 'taskName');
@@ -14,9 +14,9 @@ const createToDoForm = () => {
     taskNameDiv.appendChild(taskNameLabel);
     taskNameDiv.appendChild(taskName);
 
-    let taskDescriptionDiv = document.createElement('div');
-    let taskDescription = document.createElement('textarea');
-    let taskDescriptionLabel = document.createElement('label');
+    const taskDescriptionDiv = document.createElement('div');
+    const taskDescription = document.createElement('textarea');
+    const taskDescriptionLabel = document.createElement('label');
     taskDescription.setAttribute('type', 'text');
     taskDescription.setAttribute('name', 'taskDescription');
     taskDescription.setAttribute('id', 'taskDescription');
@@ -26,9 +26,9 @@ const createToDoForm = () => {
     taskDescriptionDiv.appendChild(taskDescriptionLabel);
     taskDescriptionDiv.appendChild(taskDescription);
 
-    let taskDueDateDiv = document.createElement('div');
-    let taskDueDate = document.createElement('input');
-    let taskDueDateLabel = document.createElement('label');
+    const taskDueDateDiv = document.createElement('div');
+    const taskDueDate = document.createElement('input');
+    const taskDueDateLabel = document.createElement('label');
     taskDueDate.setAttribute('type', 'datetime-local');
     taskDueDate.setAttribute('name', 'taskDueDate');
     taskDueDate.setAttribute('id', 'taskDueDate');
@@ -37,18 +37,18 @@ const createToDoForm = () => {
     taskDueDateDiv.appendChild(taskDueDateLabel);
     taskDueDateDiv.appendChild(taskDueDate);
 
-    let taskPriorityDiv = document.createElement('div');
-    let taskPriority = document.createElement('select');
-    let taskPriorityLabel = document.createElement('label');
+    const taskPriorityDiv = document.createElement('div');
+    const taskPriority = document.createElement('select');
+    const taskPriorityLabel = document.createElement('label');
     taskPriority.setAttribute('name', 'taskPriority');
     taskPriority.setAttribute('id', 'taskPriority');
     taskPriorityLabel.setAttribute('for', 'taskPriority');
     taskPriorityLabel.textContent = 'Priority';
-    let highPriority = document.createElement('option');
+    const highPriority = document.createElement('option');
     highPriority.textContent = 'High';
-    let normalPriority = document.createElement('option');
+    const normalPriority = document.createElement('option');
     normalPriority.textContent = 'Normal';
-    let lowPriority = document.createElement('option');
+    const lowPriority = document.createElement('option');
     lowPriority.textContent = 'Low';
     taskPriority.appendChild(highPriority);
     taskPriority.appendChild(normalPriority);
@@ -56,12 +56,12 @@ const createToDoForm = () => {
     taskPriorityDiv.appendChild(taskPriorityLabel);
     taskPriorityDiv.appendChild(taskPriority);
 
-    let btns = document.createElement('div');
+    const btns = document.createElement('div');
     btns.classList.add('btns');
-    let submitBtn = document.createElement('button');
+    const submitBtn = document.createElement('button');
     submitBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
     submitBtn.classList.add('submitBtn');
-    let cancelBtn = document.createElement('button');
+    const cancelBtn = document.createElement('button');
     cancelBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
     cancelBtn.classList.add('cancelBtn');
     btns.appendChild(submitBtn);

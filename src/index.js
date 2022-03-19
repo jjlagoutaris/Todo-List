@@ -1,4 +1,6 @@
 import './style.scss';
 import './js/addToDo';
 import './js/documentParts';
-import './js/deleteToDo';
+import addEventListeners from './js/addListeners';
+
+addEventListeners();

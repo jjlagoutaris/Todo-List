@@ -69,7 +69,7 @@ body{
             min-width: clamp(320px, 800px, 1000px);
             max-width: clamp(400px, 1200px, 1600px);
             .titles{
-                font-size: 2rem;
+                font-size: 1.5rem;
                 font-family: 'Times New Roman', Times, serif;
                 .dueDate{
                     text-align: right;
@@ -85,6 +85,7 @@ body{
             tr, tr.createdRow{
                 td{
                     vertical-align: middle;
+                    max-width: 600px;
                 }
                 .column1{
                     font-size: 1.5rem;
