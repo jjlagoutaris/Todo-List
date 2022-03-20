@@ -12,6 +12,33 @@
     <link rel="shortcut icon" href="../src/img/todoList.png" type="image/x-icon">
 </head>
 <body>
+    <dialog class="modal" id="modal">
+        <h2>Create Task</h2>
+        <form class="form" method="dialog">
+            <taskName>
+                <label for="taskName">Title</label>
+                <input type="text" name="taskName" id="taskName" placeholder="Take out the trash">
+            </taskName>
+            <div class="taskDescription">
+                <label for="taskDescription">Description</label>
+                <textarea name="taskDescription" id="taskDescription" placeholder="I avoid the acumulation of trash by performing the sacred art of removing said trash..."></textarea>
+            </div>
+            <div class="taskDueDate">
+                <label for="taskDueDate">Due Date</label>
+                <input type="datetime-local" name="taskDueDate" id="taskDueDate">
+            </div>
+            <div class="taskPriority">
+                <label for="taskPriority">Priority</label>
+                <select name="taskPriority" id="taskPriority">
+                    <option value="High">High</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <button class="createModalSubmitBtn" type="submit"><i class="fa-solid fa-check"></i></button>
+            <button class="createModalCancelBtn"><i class="fa-solid fa-ban"></i></button>
+        </form>
+    </dialog>
     <div id="header">
         <img src="../src/img/todoList.png" alt="logo" class="logo">
         <div class="title">2Do or Not2Do</div>
@@ -33,7 +60,7 @@
                 </tr>
                 <tr>
                     <td class="column1"><i class="fa-regular fa-square"></i> Take out the trash</td>
-                    <td class="column2">02/02/2022 @ 5:05PM<i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i></td>
+                    <td class="column2">02/02/2022 @ 05:05PM<i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i></td>
                 </tr>
                 
             </table>
