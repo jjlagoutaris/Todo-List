@@ -1,3 +1,7 @@
+// DEPRECATED
+// DEPRECATED
+// DEPRECATED
+
 const createToDoForm = () => {
     const container = document.createElement('div');
     container.classList.add('container');
@@ -17,7 +21,6 @@ const createToDoForm = () => {
     const taskDescriptionDiv = document.createElement('div');
     const taskDescription = document.createElement('textarea');
     const taskDescriptionLabel = document.createElement('label');
-    taskDescription.setAttribute('type', 'text');
     taskDescription.setAttribute('name', 'taskDescription');
     taskDescription.setAttribute('id', 'taskDescription');
     taskDescription.setAttribute('placeholder', 'I avoid the acumulation of trash by performing the sacred art of removing said trash...');

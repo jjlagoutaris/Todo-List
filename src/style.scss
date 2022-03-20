@@ -123,6 +123,19 @@ i{
     text-decoration: line-through;
 }
 
-i.fa-regular{
-    text-decoration: none;
+#modal{
+    // padding: 1em;
+    top: 35%;
+    left: 40%;
+    max-width: 50ch;
+    padding: 10px;
+    // border: 0;
+    // box-shadow: 0 0 1em rgb(0 0 0 / .3);
+
+    & > * {
+    margin: 0 0 0.5rem 0;
+    }
+    &::backdrop{
+    background: rgb(0 0 0 / 0.4);
+    }
 }
