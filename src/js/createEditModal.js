@@ -1,10 +1,15 @@
-// DEPRECATED
-// DEPRECATED
-// DEPRECATED
+const createEditModal = (name, description, dueDate, priority) => {
+    
+    const newModal = document.createElement('dialog');
+    newModal.classList.add('editModal');
+    newModal.setAttribute('id', 'editModal');
 
-const createToDoForm = () => {
-    const container = document.createElement('div');
-    container.classList.add('container');
+    const editModalHeader = document.createElement('h2');
+    editModalHeader.textContent = 'Edit Task';
+
+    const editModalForm = document.createElement('form');
+    editModalForm.classList.add('editForm');
+    editModalForm.setAttribute('method', 'dialog');
 
     const taskNameDiv = document.createElement('div');
     const taskName = document.createElement('input');
@@ -13,6 +18,7 @@ const createToDoForm = () => {
     taskName.setAttribute('name', 'taskName');
     taskName.setAttribute('id', 'taskName');
     taskName.setAttribute('placeholder', 'Take out the trash');
+    taskName.setAttribute('value', name);
     taskNameLabel.setAttribute('for', 'taskName');
     taskNameLabel.textContent = 'Title';
     taskNameDiv.appendChild(taskNameLabel);
@@ -24,6 +30,7 @@ const createToDoForm = () => {
     taskDescription.setAttribute('name', 'taskDescription');
     taskDescription.setAttribute('id', 'taskDescription');
     taskDescription.setAttribute('placeholder', 'I avoid the acumulation of trash by performing the sacred art of removing said trash...');
+    taskDescription.setAttribute('value', description);
     taskDescriptionLabel.setAttribute('for', 'taskDescription');
     taskDescriptionLabel.textContent = 'Description';
     taskDescriptionDiv.appendChild(taskDescriptionLabel);
@@ -35,6 +42,7 @@ const createToDoForm = () => {
     taskDueDate.setAttribute('type', 'datetime-local');
     taskDueDate.setAttribute('name', 'taskDueDate');
     taskDueDate.setAttribute('id', 'taskDueDate');
+    taskDueDate.setAttribute('value', dueDate);
     taskDueDateLabel.setAttribute('for', 'taskDueDate');
     taskDueDateLabel.textContent = 'Due Date';
     taskDueDateDiv.appendChild(taskDueDateLabel);
@@ -53,6 +61,7 @@ const createToDoForm = () => {
     normalPriority.textContent = 'Normal';
     const lowPriority = document.createElement('option');
     lowPriority.textContent = 'Low';
+    taskPriority.setAttribute('value', priority);
     taskPriority.appendChild(highPriority);
     taskPriority.appendChild(normalPriority);
     taskPriority.appendChild(lowPriority);
@@ -63,21 +72,23 @@ const createToDoForm = () => {
     btns.classList.add('btns');
     const submitBtn = document.createElement('button');
     submitBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
-    submitBtn.classList.add('submitBtn');
+    submitBtn.classList.add('submitEditBtn');
     const cancelBtn = document.createElement('button');
     cancelBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
-    cancelBtn.classList.add('cancelBtn');
+    cancelBtn.classList.add('cancelEditBtn');
     btns.appendChild(submitBtn);
     btns.appendChild(cancelBtn);
 
-    container.appendChild(taskNameDiv);
-    container.appendChild(taskDueDateDiv);
-    container.appendChild(taskPriorityDiv);
-    container.appendChild(taskDescriptionDiv);
-    container.appendChild(btns);
+    newModal.appendChild(editModalHeader);
+    editModalForm.appendChild(taskNameDiv);
+    editModalForm.appendChild(taskDescriptionDiv);
+    editModalForm.appendChild(taskDueDateDiv);
+    editModalForm.appendChild(taskPriorityDiv);
+    editModalForm.appendChild(btns);
+    newModal.appendChild(editModalForm);
 
-    return {container, taskName, taskDueDate, taskPriority, taskDescription, 
-        submitBtn, cancelBtn};
+    return {newModal, editModalForm, taskName, taskDueDate, taskPriority, 
+        taskDescription, submitBtn, cancelBtn};
 };
 
-export default createToDoForm;
+export default createEditModal;

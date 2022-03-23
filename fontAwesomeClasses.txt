@@ -14,4 +14,8 @@ arrow down (for projects):
     <i class="fa-solid fa-arrow-down"></i>
 
 
-when project is switched, reset toDoCounter
+To Do:
+implement project switching, and when project is switched, reset toDoCounter
+make submitBtn work with multiple edits
+    all the edit buttons stop working after one edit is made
+clear addToDo form after getting info

@@ -15,27 +15,27 @@
     <dialog class="modal" id="modal">
         <h2>Create Task</h2>
         <form class="form" method="dialog">
-            <taskName>
-                <label for="taskName">Title</label>
-                <input type="text" name="taskName" id="taskName" placeholder="Take out the trash">
-            </taskName>
-            <div class="taskDescription">
-                <label for="taskDescription">Description</label>
-                <textarea name="taskDescription" id="taskDescription" placeholder="I avoid the acumulation of trash by performing the sacred art of removing said trash..."></textarea>
+            <div class="taskNameDiv">
+                <label for="createTaskName">Title</label>
+                <input type="text" name="createTaskName" id="createTaskName" placeholder="Take out the trash">
             </div>
-            <div class="taskDueDate">
-                <label for="taskDueDate">Due Date</label>
-                <input type="datetime-local" name="taskDueDate" id="taskDueDate">
+            <div class="taskDescriptionDiv">
+                <label for="createTaskDescription">Description</label>
+                <textarea name="createTaskDescription" id="createTaskDescription" placeholder="I avoid the acumulation of trash by performing the sacred art of removing said trash..."></textarea>
             </div>
-            <div class="taskPriority">
-                <label for="taskPriority">Priority</label>
-                <select name="taskPriority" id="taskPriority">
+            <div class="taskDueDateDiv">
+                <label for="createTaskDueDate">Due Date</label>
+                <input type="datetime-local" name="createTaskDueDate" id="createTaskDueDate">
+            </div>
+            <div class="taskPriorityDiv">
+                <label for="createTaskPriority">Priority</label>
+                <select name="createTaskPriority" id="createTaskPriority">
                     <option value="High">High</option>
                     <option value="Normal">Normal</option>
                     <option value="Low">Low</option>
                 </select>
             </div>
-            <button class="createModalSubmitBtn" type="submit"><i class="fa-solid fa-check"></i></button>
+            <button class="createModalSubmitBtn"><i class="fa-solid fa-check"></i></button>
             <button class="createModalCancelBtn"><i class="fa-solid fa-ban"></i></button>
         </form>
     </dialog>

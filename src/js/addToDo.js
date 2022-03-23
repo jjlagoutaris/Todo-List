@@ -15,10 +15,9 @@ const addToDoToTable = () => {
         td1.classList.add('column1');
         td2.classList.add('column2');
 
-        td1.innerHTML += `<i class="fa-regular fa-square"></i> ${taskName.value}`;
-        if (taskDueDate.value !== '') {
-            let filteredDueDate = dateFilter(taskDueDate.value.replace('T', ' '.replace(/-/g, '/')));
-            // filteredDueDate = dateFilter(filteredDueDate);
+        td1.innerHTML += `<i class="fa-regular fa-square"></i> ${createTaskName.value}`;
+        if (createTaskDueDate.value !== '') {
+            let filteredDueDate = dateFilter(createTaskDueDate.value.replace('T', ' '.replace(/-/g, '/')));
             td2.innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
         }
         else {
@@ -28,20 +27,20 @@ const addToDoToTable = () => {
         tr.appendChild(td1);
         tr.appendChild(td2);
 
-        return { tr, td1, td2 };
+        return tr;
     };
 
     const row = makeRow();
 
     // create an object to store the values and push into defaultProj later
-    let toDoObj = Todo(taskName.value, taskDescription.value, taskDueDate.value,
-        taskPriority.value, _.toDoCounter);
+    let toDoObj = Todo(createTaskName.value, createTaskDescription.value, createTaskDueDate.value,
+        createTaskPriority.value, _.toDoCounter);
     
     _.toDoCounter++;
 
     listOfProjects[currentProjectIndex].addToList(toDoObj);
 
-    _.table.appendChild(row.tr);
+    _.table.appendChild(row);
     addEventListeners();
 };
 
