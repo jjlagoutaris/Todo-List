@@ -30,8 +30,8 @@
             <div class="taskPriorityDiv">
                 <label for="createTaskPriority">Priority</label>
                 <select name="createTaskPriority" id="createTaskPriority">
-                    <option value="High">High</option>
                     <option value="Normal">Normal</option>
+                    <option value="High">High</option>
                     <option value="Low">Low</option>
                 </select>
             </div>
@@ -46,22 +46,28 @@
     <div id="content">
         <div class="sidebar">
             <ul>
-                <li class="link today"><a href="#">Today<i class="fa-solid fa-exclamation"></i></a></li>
-                <li class="link week"><a href="#">This Week<i class="fa-regular fa-calendar"></i></a></li>
-                <li class="link categories"><a href="#">Categories<i class="fa-solid fa-arrow-down"></i></a></li>
+                <li class="link today"><a>Today<i class="fa-solid fa-exclamation"></i></a></li>
+                <li class="link week"><a>This Week<i class="fa-regular fa-calendar"></i></a></li>
+                <li class="link projects">
+                    <a href="#">Projects<i class="fa-solid fa-arrow-down"></i></a>
+                    <ul>
+                        <li class="project project1"><a><i class="fa-solid fa-basketball"></i>DEFAULT</a></li>
+                        <li class="project project1"><a><i class="fa-solid fa-basketball"></i>CLIMBING</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="todoList">
             <table>
                 
-                <tr class="titles">
+                <!-- <tr class="titles">
                     <th class="projName"">To Do</th>
                     <th class="dueDate">DUE DATE</th>
-                </tr>
-                <tr>
+                </tr> -->
+                <!-- <tr>
                     <td class="column1"><i class="fa-regular fa-square"></i> Take out the trash</td>
                     <td class="column2">02/02/2022 @ 05:05PM<i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i></td>
-                </tr>
+                </tr> -->
                 
             </table>
             <div class="addToDoBtn"><img src="../src/img/plus-circle.png" alt="add"></div>
