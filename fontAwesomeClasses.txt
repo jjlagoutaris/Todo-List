@@ -12,10 +12,15 @@ calendar:
     <i class="fa-regular fa-calendar"></i>
 arrow down (for projects):
     <i class="fa-solid fa-arrow-down"></i>
+basketball:
+    <i class="fa-solid fa-basketball"></i>
 
 
 To Do:
-implement project switching, and when project is switched, reset toDoCounter
-make submitBtn work with multiple edits
-    all the edit buttons stop working after one edit is made
-clear addToDo form after getting info
+> implement project switching, and when project is switched, reset toDoCounter
+> add dayProj
+    > pull toDos for that day from other projects, and remove toDos that are not part of that day 
+    that are already in the project
+> add weekProj
+    > same as above
+> add ability to add, view, edit, and remove projects

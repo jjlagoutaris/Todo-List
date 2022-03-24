@@ -1,8 +1,9 @@
 import _ from './documentParts';
 import Todo from './todo';
-import { listOfProjects, currentProjectIndex } from './defaultProj';
+import defaults from './defaultProjects';
 import dateFilter from './dateFilter';
 import addEventListeners from './addListeners';
+import date from './currentDate';
 
 const addToDoToTable = () => {
 
@@ -15,7 +16,7 @@ const addToDoToTable = () => {
         td1.classList.add('column1');
         td2.classList.add('column2');
 
-        td1.innerHTML += `<i class="fa-regular fa-square"></i> ${createTaskName.value}`;
+        td1.innerHTML = `<i class="fa-regular fa-square"></i> ${createTaskName.value}`;
         if (createTaskDueDate.value !== '') {
             let filteredDueDate = dateFilter(createTaskDueDate.value.replace('T', ' '.replace(/-/g, '/')));
             td2.innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
@@ -38,9 +39,13 @@ const addToDoToTable = () => {
     
     _.toDoCounter++;
 
-    listOfProjects[currentProjectIndex].addToList(toDoObj);
+    defaults.listOfProjects[defaults.currentProjectIndex].addToList(toDoObj);
 
     _.table.appendChild(row);
+    createTaskName.value = '';
+    createTaskDescription.value = '';
+    createTaskDueDate.value = date.now();
+    createTaskPriority.value = 'Normal';
     addEventListeners();
 };
 

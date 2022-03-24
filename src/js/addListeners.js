@@ -1,5 +1,5 @@
 import _ from './documentParts';
-import { listOfProjects, currentProjectIndex } from './defaultProj';
+import defaults from './defaultProjects';
 import addToDoToTable from './addToDo';
 import createEditModal from './createEditModal';
 import dateFilter from './dateFilter';
@@ -25,12 +25,6 @@ const addEventListeners = () => {
     for (let i = 0; i < editModalBtns.length; i++) {
         editModalBtns[i].addEventListener('click', instantiateEditModal);
     }
-    // const editModalSubmitBtns = document.querySelectorAll('.fa-check');
-    // if(editModalSubmitBtns.length > 0){
-    //     for(let i = 0; i < editModalSubmitBtns.length; i++){
-    //         editModalSubmitBtns[i].addEventListener('click', instantiateEditModal.submitEditModal);
-    //     }
-    // }
     // create toDo modal
     _.addToDoBtn.addEventListener('click', instantiateCreationModal);
 }
@@ -42,9 +36,9 @@ const deleteToDo = (e) => {
 
     const removeFromArray = () => {
         let targetIndex = todo.getAttribute('data-index');
-        for (let i = 0; i < listOfProjects[currentProjectIndex].arr.length; i++) {
-            if (listOfProjects[currentProjectIndex].arr[i].getID() == targetIndex) {
-                listOfProjects[currentProjectIndex].removeFromList(i);
+        for (let i = 0; i < defaults.listOfProjects[defaults.currentProjectIndex].arr.length; i++) {
+            if (defaults.listOfProjects[defaults.currentProjectIndex].arr[i].getID() == targetIndex) {
+                defaults.listOfProjects[defaults.currentProjectIndex].removeFromList(i);
             }
         }
     };
@@ -75,7 +69,7 @@ const instantiateEditModal = (e) => {
     const item = e.target;
     const todo = item.parentElement.parentElement;
     const targetIndex = todo.getAttribute('data-index');
-    const shortHand = listOfProjects[currentProjectIndex];
+    const shortHand = defaults.listOfProjects[defaults.currentProjectIndex];
 
     const getToDoInfo = () => {
         for (let i = 0; i < shortHand.arr.length; i++) {
@@ -131,7 +125,8 @@ const instantiateEditModal = (e) => {
     });
 };
 
-const instantiateCreationModal = () => {
+const instantiateCreationModal = (e) => {
+    e.preventDefault();
     _.modal.showModal();
     _.modalCancelBtn.addEventListener('click', function cancelCreationModal () {
         _.modal.close();
