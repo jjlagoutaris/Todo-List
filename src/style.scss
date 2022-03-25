@@ -70,6 +70,7 @@ body{
             li.project{
                 font-size: 1.3rem;
                 padding: 5px;
+                width: 200px;
                 &:hover{
                     cursor: pointer;
                 }
@@ -78,9 +79,9 @@ body{
                     gap: 10px;
                     justify-content: center;
                     align-items: center;
-                    background-color: green;
-                    color: yellow;
                     padding: 5px;
+                    border: 1px solid;
+                    font-family: 'rock salt', cursive;
                 }
             }
         }
@@ -134,13 +135,10 @@ body{
                 }
             }
         }
-        .addToDoBtn{
-            cursor: pointer;
-        }
     }
 }
 
-i{
+i, .addToDoBtn, .addProjectBtn{
     cursor: pointer;
 }
 .fa-arrow-down, .fa-calendar, .fa-exclamation{

@@ -2,6 +2,8 @@ const body = document.querySelector('body');
 const todaysToDos = document.querySelector('.today');
 const thisWeeksToDos = document.querySelector('.week');
 const categories = document.querySelector('.categories');
+const defaultProject = document.querySelector('.defaultProject');
+const addProjectBtn = document.querySelector('.addProjectBtn');
 const toDoList = document.querySelector('.todoList');
 const table = document.querySelector('table');
 const tableTitle = document.querySelector('.titles.projName');
@@ -17,7 +19,11 @@ const modalCancelBtn = document.querySelector('.createModalCancelBtn');
 const modalSubmitBtn = document.querySelector('.createModalSubmitBtn');
 const toDoCounter = 0;
 
-export default { body, todaysToDos, thisWeeksToDos, categories, 
+export default { 
+    
+body, todaysToDos, thisWeeksToDos, categories, defaultProject,
 toDoList, table, tableTitle, tableDueDate, addToDoBtn, toDoCounter, modal, 
 creationModalTaskName, creationModalTaskDescription, creationModalTaskDueDate,
-creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn };
+creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn 
+
+};

@@ -1,13 +1,6 @@
 import _ from './documentParts';
 import defaults from './defaultProjects';
-
-// const todaysToDos = () => {
-    
-// };
-
-// const thisWeeksToDos = () => {
-    
-// };
+import addEventListeners from './addListeners';
 
 const clearOldProject = () => {
     _.table.textContent = '';
@@ -18,6 +11,7 @@ const generateProject = (selectedProject) => {
     let header = generateTableHeader();
     _.table.appendChild(header);
     generateRows(selectedProject);
+    addEventListeners();
 };
 
 const generateTableHeader = () => {
@@ -68,5 +62,18 @@ const generateThisWeeksToDos = () => {
     generateProject(defaults.thisWeeksToDos);
 }
 
-_.todaysToDos.addEventListener('click', generateTodaysToDos);
-_.thisWeeksToDos.addEventListener('click', generateThisWeeksToDos);
+const generateDefaultToDos = () => {
+    generateProject(defaults.defaultProj);
+}
+
+const setupDefaultProjects = () => {
+    _.todaysToDos.addEventListener('click', generateTodaysToDos);
+    _.thisWeeksToDos.addEventListener('click', generateThisWeeksToDos);
+    _.defaultProject.addEventListener('click', generateDefaultToDos);
+}
+
+setupDefaultProjects();
+
+generateProject(defaults.listOfProjects[defaults.currentProjectIndex]);
+
+// export default { generateTodaysToDos, generateThisWeeksToDos, generateDefaultToDos };

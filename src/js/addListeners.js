@@ -3,6 +3,7 @@ import defaults from './defaultProjects';
 import addToDoToTable from './addToDo';
 import createEditModal from './createEditModal';
 import dateFilter from './dateFilter';
+// import pageGeneration from './projectPageGeneration';
 
 const addEventListeners = () => {
     // remove toDo
@@ -27,6 +28,8 @@ const addEventListeners = () => {
     }
     // create toDo modal
     _.addToDoBtn.addEventListener('click', instantiateCreationModal);
+    // create project modal
+    _.addProjectBtn.addEventListener('click', instantiateProjectModal);
 }
 
 const deleteToDo = (e) => {
@@ -135,4 +138,9 @@ const instantiateCreationModal = (e) => {
     addEventListeners();
 };
 
-export default addEventListeners; 
+const instantiateProjectModal = (e) => {
+    e.preventDefault();
+    
+};
+
+export default addEventListeners;
