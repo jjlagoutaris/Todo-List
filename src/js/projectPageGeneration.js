@@ -1,15 +1,16 @@
 import _ from './documentParts';
 import defaults from './defaultProjects';
 import addEventListeners from './addListeners';
+import { dateFilter } from './dateFilter';
 
 const clearOldProject = () => {
     _.table.textContent = '';
 };
 
-const generateProject = (selectedProject) => {
+const generateProject = (selectedProject, projectIndex) => {
+    defaults.currentProjectIndex = projectIndex;
     clearOldProject();
-    let header = generateTableHeader();
-    _.table.appendChild(header);
+    generateTableHeader();
     generateRows(selectedProject);
     addEventListeners();
 };
@@ -25,7 +26,7 @@ const generateTableHeader = () => {
     thDueDate.innerHTML = `DUE DATE <i class="fa-solid fa-arrow-down"></i>`;
     tr.appendChild(thProjName);
     tr.appendChild(thDueDate);
-    return tr;
+    _.table.appendChild(tr);
 };
 
 const generateRows = (selectedProject) => {
@@ -40,7 +41,7 @@ const generateRows = (selectedProject) => {
         td2.classList.add('column2');
 
         td1.innerHTML = `<i class="fa-regular fa-square"></i> ${row.getTitle()}`;
-        td2.innerHTML = `${row.getDueDate()} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
+        td2.innerHTML = `${dateFilter(row.getDueDate())} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
 
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -55,15 +56,15 @@ const generateRows = (selectedProject) => {
 };
 
 const generateTodaysToDos = () => {
-    generateProject(defaults.todaysToDos);
+    generateProject(defaults.todaysToDos, 2);
 }
 
 const generateThisWeeksToDos = () => {
-    generateProject(defaults.thisWeeksToDos);
+    generateProject(defaults.thisWeeksToDos, 3);
 }
 
 const generateDefaultToDos = () => {
-    generateProject(defaults.defaultProj);
+    generateProject(defaults.defaultProj, 0);
 }
 
 const setupDefaultProjects = () => {
@@ -74,6 +75,4 @@ const setupDefaultProjects = () => {
 
 setupDefaultProjects();
 
-generateProject(defaults.listOfProjects[defaults.currentProjectIndex]);
-
-// export default { generateTodaysToDos, generateThisWeeksToDos, generateDefaultToDos };
+generateProject(defaults.listOfProjects[defaults.currentProjectIndex], defaults.currentProjectIndex);

@@ -1,9 +1,9 @@
 import _ from './documentParts';
 import Todo from './todo';
 import defaults from './defaultProjects';
-import dateFilter from './dateFilter';
+import { dateFilter } from './dateFilter';
 import addEventListeners from './addListeners';
-import date from './currentDate';
+import { now } from './currentDate';
 
 const addToDoToTable = () => {
 
@@ -18,7 +18,7 @@ const addToDoToTable = () => {
 
         td1.innerHTML = `<i class="fa-regular fa-square"></i> ${createTaskName.value}`;
         if (createTaskDueDate.value !== '') {
-            let filteredDueDate = dateFilter(createTaskDueDate.value.replace('T', ' '.replace(/-/g, '/')));
+            let filteredDueDate = dateFilter(createTaskDueDate.value);
             td2.innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
         }
         else {
@@ -40,11 +40,12 @@ const addToDoToTable = () => {
     _.toDoCounter++;
 
     defaults.listOfProjects[defaults.currentProjectIndex].addToList(toDoObj);
+    defaults.listOfProjects[1].addToList(toDoObj);
 
     _.table.appendChild(row);
     createTaskName.value = '';
     createTaskDescription.value = '';
-    createTaskDueDate.value = date.now();
+    createTaskDueDate.value = now();
     createTaskPriority.value = 'Normal';
     addEventListeners();
 };

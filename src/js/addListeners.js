@@ -2,7 +2,8 @@ import _ from './documentParts';
 import defaults from './defaultProjects';
 import addToDoToTable from './addToDo';
 import createEditModal from './createEditModal';
-import dateFilter from './dateFilter';
+import { dateFilter } from './dateFilter';
+import { now } from './currentDate';
 // import pageGeneration from './projectPageGeneration';
 
 const addEventListeners = () => {
@@ -53,8 +54,7 @@ const completeToDo = (e) => {
     const item = e.target;
     const todo = item.parentElement.parentElement;
     todo.classList.add('completed');
-    const innerHTML = todo.innerHTML;
-    todo.innerHTML = innerHTML.replace('<i class="fa-regular fa-square"></i>', '<i class="fa-regular fa-square-check"></i>');
+    todo.innerHTML = todo.innerHTML.replace('<i class="fa-regular fa-square"></i>', '<i class="fa-regular fa-square-check"></i>');
     addEventListeners();
 };
 
@@ -62,8 +62,7 @@ const undoToDoCompletion = (e) => {
     const item = e.target;
     const todo = item.parentElement.parentElement;
     todo.classList.remove('completed');
-    const innerHTML = todo.innerHTML;
-    todo.innerHTML = innerHTML.replace('<i class="fa-regular fa-square-check"></i>', '<i class="fa-regular fa-square"></i>');
+    todo.innerHTML = todo.innerHTML.replace('<i class="fa-regular fa-square-check"></i>', '<i class="fa-regular fa-square"></i>');
     addEventListeners();
 }
 
@@ -107,15 +106,17 @@ const instantiateEditModal = (e) => {
         e.preventDefault();
         for (let i = 0; i < shortHand.arr.length; i++) {
             if (shortHand.arr[i].getID() == targetIndex) {
+
                 // update arr
                 shortHand.arr[i].setTitle(form.taskName.value);
                 shortHand.arr[i].setDescription(form.taskDescription.value);
                 shortHand.arr[i].setDueDate(form.taskDueDate.value);
                 shortHand.arr[i].setPriority(form.taskPriority.value);
                 // update table
+
                 todo.children[0].innerHTML = `<i class="fa-regular fa-square"></i> ${form.taskName.value}`;
                 if (form.taskDueDate.value !== '') {
-                    let filteredDueDate = dateFilter(form.taskDueDate.value.replace('T', ' '.replace(/-/g, '/')));
+                    let filteredDueDate = dateFilter(form.taskDueDate.value);
                     todo.children[1].innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
                 }
                 else {
@@ -130,10 +131,17 @@ const instantiateEditModal = (e) => {
 
 const instantiateCreationModal = (e) => {
     e.preventDefault();
+
     _.modal.showModal();
+
+    // set default date value to now
+    let dueDate = document.querySelector('#createTaskDueDate'); 
+    dueDate.setAttribute("value", `${now()}`);
+
     _.modalCancelBtn.addEventListener('click', function cancelCreationModal () {
         _.modal.close();
     });
+    
     _.modalSubmitBtn.addEventListener('click', addToDoToTable);
     addEventListeners();
 };

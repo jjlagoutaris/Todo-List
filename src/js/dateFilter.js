@@ -1,6 +1,6 @@
-// 2022-03-16 03:52 => 03/16/2022 @ 03:52 AM
-const dateFilter = (date) => {
-    let splitTimeAndDate = date.split(' ');
+// 2022-03-16T03:52 => 03/16/2022 @ 03:52 AM
+export const dateFilter = (date) => {
+    let splitTimeAndDate = date.split('T');
     let splitDate = splitTimeAndDate[0].split('-');
     let splitTime = splitTimeAndDate[1].split(':');
     let fixedHour = 0;
@@ -14,5 +14,20 @@ const dateFilter = (date) => {
     let fixedTimeAndDate =  fixedDate + ' @ ' + fixedHour;
     return fixedTimeAndDate;
 }
-
-export default dateFilter;
+// 03/16/2022 @ 03:52 AM => 2022-03-26T11:46
+export const undoDateFilter = (date) => {
+    let splitDateAndTime = date.split(' @ ');
+    let splitDate = splitDateAndTime[0].split('/');
+    let splitTimeAndPeriod = splitDateAndTime[1].split(' ');
+    let splitTime = splitTimeAndPeriod[0].split(':');
+    let period = splitTimeAndPeriod[1];
+    let fixedTime;
+    if (period === 'PM'){
+        fixedTime = ((+splitTime[0] + 12)+':'+splitTime[1]).toString();
+    }
+    else{
+        fixedTime = splitTime[0]+':'+splitTime[1];
+    }
+    let fixedDateAndTime = splitDate[2] + '-' + splitDate[0] + '-' + splitDate[1] + 'T' + fixedTime;
+    return fixedDateAndTime;
+}
