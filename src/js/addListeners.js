@@ -229,7 +229,12 @@ const instantiateProjectModal = (e) => {
             let project = e.target.parentElement.parentElement;
             for(let i = 0; i < defaults.listOfProjects.length; i++){
                 if(defaults.listOfProjects[i].getIndex() == project.getAttribute('data-index')){
-                    defaults.listOfProjects.splice(i, 1);
+                    // splice out project
+                    let removedList = defaults.listOfProjects.splice(i, 1);
+                    // update everythingProj to remove these toDos
+                    defaults.listOfProjects[1].arr = defaults.listOfProjects[1].arr.filter( (el) => {
+                        return removedList[0].arr.indexOf(el) < 0;
+                    });
                 }
             }
             projects.removeChild(project);

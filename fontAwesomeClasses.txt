@@ -19,11 +19,5 @@ circle-minus:
 
 
 To Do:
-> If I keep default toDos, add them to everythingProj
-> implement project switching, and when project is switched, reset toDoCounter
-> add dayProj
-    > pull toDos for that day from other projects, and remove toDos that are not part of that day 
-    that are already in the project
-> add weekProj
-    > same as above
-> add ability to add, view, and remove (add warning and an option to disable warning) projects
+> add ability to view and remove (add warning and an option to disable warning) projects
+> 
