@@ -6,7 +6,20 @@ import { dateFilter } from './dateFilter';
 import { now } from './currentDate';
 // import pageGeneration from './projectPageGeneration';
 
+// function viewContents () {
+//     let list = defaults.listOfProjects;
+
+//     for (let i = 0; i < list.length; i++){
+//         console.log(list[i].getTitle());
+//         for(let j = 0; j < list[i].arr.length; j++){
+//             console.log(list[i].arr[j].getID());
+//         }
+//     }
+//     console.log('stop');
+// }
+
 const addEventListeners = () => {
+    // viewContents();
     // remove toDo
     const trashBtns = document.querySelectorAll('.fa-trash-can');
     for (let i = 0; i < trashBtns.length; i++) {
@@ -141,7 +154,7 @@ const instantiateCreationModal = (e) => {
     _.modalCancelBtn.addEventListener('click', function cancelCreationModal () {
         _.modal.close();
     });
-    
+
     _.modalSubmitBtn.addEventListener('click', addToDoToTable);
     addEventListeners();
 };

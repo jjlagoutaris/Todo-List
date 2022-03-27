@@ -1,9 +1,9 @@
 import _ from './documentParts';
 import Todo from './todo';
 import defaults from './defaultProjects';
-import { dateFilter } from './dateFilter';
+import { dateFilter, convertDate } from './dateFilter';
 import addEventListeners from './addListeners';
-import { now } from './currentDate';
+import { now, thisWeekCheck, todayCheck } from './currentDate';
 
 const addToDoToTable = () => {
 
@@ -38,6 +38,15 @@ const addToDoToTable = () => {
         createTaskPriority.value, _.toDoCounter);
     
     _.toDoCounter++;
+
+    let convertedDate = convertDate(createTaskDueDate);
+
+    if (todayCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)) {
+        console.log('day');
+    }
+    if (thisWeekCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)){
+        console.log('week');
+    }
 
     defaults.listOfProjects[defaults.currentProjectIndex].addToList(toDoObj);
     defaults.listOfProjects[1].addToList(toDoObj);
