@@ -42,10 +42,10 @@ const addToDoToTable = () => {
     let convertedDate = convertDate(createTaskDueDate);
 
     if (todayCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)) {
-        console.log('day');
+        defaults.listOfProjects[2].addToList(toDoObj);
     }
     if (thisWeekCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)){
-        console.log('week');
+        defaults.listOfProjects[3].addToList(toDoObj);
     }
 
     defaults.listOfProjects[defaults.currentProjectIndex].addToList(toDoObj);

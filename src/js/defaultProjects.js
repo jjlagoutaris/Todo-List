@@ -27,4 +27,5 @@ listOfProjects.push(thisWeeksToDos);
 let sampleObj3 = Todo('Week Task', 'Default Description', "2022-03-16T03:52", "High", 40);
 thisWeeksToDos.addToList(sampleObj3);
 
-export default { listOfProjects, currentProjectIndex, defaultProj, todaysToDos, thisWeeksToDos };
+export default { listOfProjects, currentProjectIndex, projectCount,
+    defaultProj, todaysToDos, thisWeeksToDos };

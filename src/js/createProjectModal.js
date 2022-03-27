@@ -1,4 +1,4 @@
-const createProjectModal = (name, description) => {
+const createProjectModal = () => {
     
     const newModal = document.createElement('dialog');
     newModal.classList.add('projectModal');
@@ -18,7 +18,6 @@ const createProjectModal = (name, description) => {
     projectName.setAttribute('name', 'projectName');
     projectName.setAttribute('id', 'projectName');
     projectName.setAttribute('placeholder', 'Fitness');
-    projectName.setAttribute('value', name);
     projectNameLabel.setAttribute('for', 'projectName');
     projectNameLabel.textContent = 'Title';
     projectNameDiv.appendChild(projectNameLabel);
@@ -30,7 +29,6 @@ const createProjectModal = (name, description) => {
     projectDescription.setAttribute('name', 'projectDescription');
     projectDescription.setAttribute('id', 'projectDescription');
     projectDescription.setAttribute('placeholder', 'I am a multi-sport athlete engaged in climbing, basketball, hiking, etc');
-    projectDescription.setAttribute('value', description);
     projectDescriptionLabel.setAttribute('for', 'projectDescription');
     projectDescriptionLabel.textContent = 'Description';
     projectDescriptionDiv.appendChild(projectDescriptionLabel);

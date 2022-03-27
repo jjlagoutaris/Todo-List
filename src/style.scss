@@ -44,7 +44,7 @@ body{
         font-size: 1.5rem;
         padding: 10px;
         background-color: $SIDEBAR;
-        li.projects{
+        li.projectsLi{
             background-color: white;
         }
         ul{
@@ -59,7 +59,7 @@ body{
                 }
             }
         }
-        li.projects ul{
+        li.projectsLi ul{
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -154,7 +154,7 @@ i, .addToDoBtn, .addProjectBtn{
 }
 
 
-#modal, #editModal{
+#modal, #editModal, #projectModal{
     // padding: 1em;
     top: 35%;
     left: 40%;

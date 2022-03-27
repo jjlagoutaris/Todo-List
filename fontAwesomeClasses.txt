@@ -14,6 +14,8 @@ arrow down (for projects):
     <i class="fa-solid fa-arrow-down"></i>
 basketball:
     <i class="fa-solid fa-basketball"></i>
+circle-minus:
+    <i class="fa-solid fa-circle-minus"></i>
 
 
 To Do:

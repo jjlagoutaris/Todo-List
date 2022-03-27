@@ -4,6 +4,8 @@ import addToDoToTable from './addToDo';
 import createEditModal from './createEditModal';
 import { dateFilter } from './dateFilter';
 import { now } from './currentDate';
+import createProjectModal from './createProjectModal';
+import Project from './project';
 // import pageGeneration from './projectPageGeneration';
 
 // function viewContents () {
@@ -125,6 +127,10 @@ const instantiateEditModal = (e) => {
                 shortHand.arr[i].setDescription(form.taskDescription.value);
                 shortHand.arr[i].setDueDate(form.taskDueDate.value);
                 shortHand.arr[i].setPriority(form.taskPriority.value);
+
+                // update today/this week projects
+                // if(defaults.listOfProjects[2].arr[i].includes);
+
                 // update table
 
                 todo.children[0].innerHTML = `<i class="fa-regular fa-square"></i> ${form.taskName.value}`;
@@ -160,8 +166,70 @@ const instantiateCreationModal = (e) => {
 };
 
 const instantiateProjectModal = (e) => {
-    e.preventDefault();
     
+    e.preventDefault();
+
+    const proj = createProjectModal();
+    _.body.appendChild(proj.newModal);
+
+    proj.newModal.showModal();
+
+    const submitProjectBtn = document.querySelector('.submitProjectBtn');
+    const cancelProjectBtn = document.querySelector('.cancelProjectBtn');
+
+    cancelProjectBtn.addEventListener('click', function cancelProjectModal(e) {
+        e.preventDefault();
+        proj.newModal.close();
+        _.body.removeChild(proj.newModal);
+        addEventListeners(); 
+    });
+
+    submitProjectBtn.addEventListener('click', function submitProjectModal(e) {
+        e.preventDefault();
+        // create new project
+        const newProj = Project(proj.projectName.value, proj.projectDescription.value, defaults.projectCount);
+        defaults.projectCount++;
+
+        // add new project to projects
+    
+        defaults.listOfProjects.push(newProj);
+        // for(let i = 0; i < defaults.listOfProjects.length; i++){
+        //     console.log(defaults.listOfProjects[i].getTitle());
+        //     console.log(defaults.listOfProjects[i].getIndex());
+        // }
+
+        // update html to show project
+
+        const li = document.createElement('li');
+        li.classList.add('project');
+        li.setAttribute('data-index', --defaults.projectCount);
+
+        let name = proj.projectName.value.toLowerCase();
+        name = name.charAt(0).toUpperCase() +  name.slice(1);
+        if (name.length > 12){
+            name = name.substring(0, 10) + '...';
+        }
+        li.innerHTML = `<a><i class="fa-solid fa-basketball"></i>${name} <i class="fa-solid fa-circle-minus"></i></a>`;
+        _.projects.appendChild(li);
+
+        // create removal button for project
+
+        const removeProjectBtn = document.querySelector('.fa-circle-minus');
+        removeProjectBtn.addEventListener('click', (e) => {
+            let projects = e.target.parentElement.parentElement.parentElement;
+            let project = e.target.parentElement.parentElement;
+            for(let i = 0; i < defaults.listOfProjects.length; i++){
+                if(defaults.listOfProjects[i].getIndex() == project.getAttribute('data-index')){
+                    defaults.listOfProjects.splice(i, 1);
+                }
+            }
+            projects.removeChild(project);
+        });
+
+        // update misc
+        _.body.removeChild(proj.newModal);
+        addEventListeners();
+    });
 };
 
 export default addEventListeners;

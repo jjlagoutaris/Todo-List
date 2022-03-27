@@ -1,7 +1,7 @@
 const body = document.querySelector('body');
 const todaysToDos = document.querySelector('.today');
 const thisWeeksToDos = document.querySelector('.week');
-const categories = document.querySelector('.categories');
+const projects = document.querySelector('.projects');
 const defaultProject = document.querySelector('.defaultProject');
 const addProjectBtn = document.querySelector('.addProjectBtn');
 const toDoList = document.querySelector('.todoList');
@@ -21,7 +21,7 @@ const toDoCounter = 0;
 
 export default { 
     
-body, todaysToDos, thisWeeksToDos, categories, defaultProject,
+body, todaysToDos, thisWeeksToDos, projects, defaultProject,
 toDoList, table, tableTitle, tableDueDate, addToDoBtn, toDoCounter, modal, 
 creationModalTaskName, creationModalTaskDescription, creationModalTaskDueDate,
 creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn 
