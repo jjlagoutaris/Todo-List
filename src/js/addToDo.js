@@ -39,6 +39,10 @@ const addToDoToTable = () => {
     
     _.toDoCounter++;
 
+
+    // console.log(toDoObj.isTodayCheck(toDoObj.convertedDate(toDoObj.getDueDate())));
+    // console.log(toDoObj.isThisWeekCheck(toDoObj.convertedDate(toDoObj.getDueDate())));
+
     let convertedDate = convertDate(createTaskDueDate);
 
     if (todayCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)) {

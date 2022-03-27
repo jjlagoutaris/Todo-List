@@ -55,9 +55,16 @@ const deleteToDo = (e) => {
 
     const removeFromArray = () => {
         let targetIndex = todo.getAttribute('data-index');
+        // remove from selected proj
         for (let i = 0; i < defaults.listOfProjects[defaults.currentProjectIndex].arr.length; i++) {
             if (defaults.listOfProjects[defaults.currentProjectIndex].arr[i].getID() == targetIndex) {
                 defaults.listOfProjects[defaults.currentProjectIndex].removeFromList(i);
+            }
+        }
+        // remove from everythingProj
+        for (let i = 0; i < defaults.listOfProjects[1].arr.length; i++) {
+            if (defaults.listOfProjects[1].arr[i].getID() == targetIndex) {
+                defaults.listOfProjects[1].removeFromList(i);
             }
         }
     };
@@ -70,6 +77,8 @@ const completeToDo = (e) => {
     const todo = item.parentElement.parentElement;
     todo.classList.add('completed');
     todo.innerHTML = todo.innerHTML.replace('<i class="fa-regular fa-square"></i>', '<i class="fa-regular fa-square-check"></i>');
+    console.log(defaults.listOfProjects[1].filterTodaysToDos());
+    console.log(defaults.listOfProjects[1].filterThisWeeksToDos());
     addEventListeners();
 };
 

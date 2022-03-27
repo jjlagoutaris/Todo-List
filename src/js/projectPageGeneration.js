@@ -56,10 +56,12 @@ const generateRows = (selectedProject) => {
 };
 
 const generateTodaysToDos = () => {
+    defaults.listOfProjects[2].arr.splice(0, defaults.listOfProjects[2].arr.length, ...defaults.listOfProjects[1].filterTodaysToDos());
     generateProject(defaults.todaysToDos, 2);
 }
 
 const generateThisWeeksToDos = () => {
+    defaults.listOfProjects[3].arr.splice(0, defaults.listOfProjects[3].arr.length, ...defaults.listOfProjects[1].filterThisWeeksToDos());
     generateProject(defaults.thisWeeksToDos, 3);
 }
 

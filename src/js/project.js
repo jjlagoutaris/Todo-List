@@ -15,10 +15,21 @@ const Project = (title, description, index) => {
         if(index > -1){
             arr.splice(index, 1);
         }
+    };
+
+    const filterTodaysToDos = () => {
+        const todaysToDos = arr.filter(toDo => toDo.isTodayCheck(toDo.convertedDate(toDo.getDueDate())));
+        return todaysToDos;
+    };
+    const filterThisWeeksToDos = () => {
+        const thisWeeksToDos = arr.filter(toDo => toDo.isThisWeekCheck(toDo.convertedDate(toDo.getDueDate())));
+        return thisWeeksToDos;
     }
 
     return {getTitle, getDescription, getIndex, setTitle, 
-        setDescription, setIndex, arr, addToList, removeFromList};
+        setDescription, setIndex, arr, addToList, removeFromList,
+        filterTodaysToDos, filterThisWeeksToDos,
+    };
 };
 
 export default Project;

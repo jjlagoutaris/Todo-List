@@ -26,4 +26,4 @@ To Do:
     that are already in the project
 > add weekProj
     > same as above
-> add ability to add, view, edit, and remove (add warning and an option to disable warning) projects
+> add ability to add, view, and remove (add warning and an option to disable warning) projects
