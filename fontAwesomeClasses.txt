@@ -21,3 +21,23 @@ circle-minus:
 To Do:
 > add ability to view and remove (add warning and an option to disable warning) projects
 > 
+
+1X !!! first episode
+1help 2X !!! 2nd episode 
+lost to 2x boxbox !!! 3rd episode
+? 1X !!! 4th episode
+
+
+
+
+// when we dynamically create an entire dom section, add eventHandlers in the function creating the dom, e.g.,
+createEditModal
+// when we dynamically create dom elements being appended to existing html-defined dom elements, use
+event bubbling to bind the events by selecting the container element and then using
+    // Click handler for entire DIV container
+    container.addEventListener('click', function (e) {
+        // But only alert for elements that have an alert-button class
+        if (e.target.classList.contains('alert-button')) {
+        alert(e.target.innerHTML);
+        }
+    });  

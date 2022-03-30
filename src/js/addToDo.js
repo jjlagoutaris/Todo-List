@@ -1,11 +1,10 @@
 import _ from './documentParts';
-import Todo from './todo';
+import { Todo } from './todo';
 import defaults from './defaultProjects';
-import { dateFilter, convertDate } from './dateFilter';
-import addEventListeners from './addListeners';
-import { now, thisWeekCheck, todayCheck } from './currentDate';
+import { dateFilter, convertDate, now, thisWeekCheck, todayCheck } from './time';
+import { addEventListeners } from './addListeners';
 
-const addToDoToTable = () => {
+export const addToDoToTable = () => {
 
     const makeRow = () => {
         const tr = document.createElement('tr');
@@ -39,10 +38,6 @@ const addToDoToTable = () => {
     
     _.toDoCounter++;
 
-
-    // console.log(toDoObj.isTodayCheck(toDoObj.convertedDate(toDoObj.getDueDate())));
-    // console.log(toDoObj.isThisWeekCheck(toDoObj.convertedDate(toDoObj.getDueDate())));
-
     let convertedDate = convertDate(createTaskDueDate);
 
     if (todayCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)) {
@@ -62,5 +57,3 @@ const addToDoToTable = () => {
     createTaskPriority.value = 'Normal';
     addEventListeners();
 };
-
-export default addToDoToTable;

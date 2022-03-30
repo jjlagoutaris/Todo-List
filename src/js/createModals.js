@@ -1,4 +1,61 @@
-const createEditModal = (name, description, dueDate, priority) => {
+export const createProjectModal = () => {
+    
+    const newModal = document.createElement('dialog');
+    newModal.classList.add('projectModal');
+    newModal.setAttribute('id', 'projectModal');
+
+    const projectModalHeader = document.createElement('h2');
+    projectModalHeader.textContent = 'New Project';
+
+    const projectModalForm = document.createElement('form');
+    projectModalForm.classList.add('projectForm');
+    projectModalForm.setAttribute('method', 'dialog');
+
+    const projectNameDiv = document.createElement('div');
+    const projectName = document.createElement('input');
+    const projectNameLabel = document.createElement('label');
+    projectName.setAttribute('type', 'text');
+    projectName.setAttribute('name', 'projectName');
+    projectName.setAttribute('id', 'projectName');
+    projectName.setAttribute('placeholder', 'Fitness');
+    projectNameLabel.setAttribute('for', 'projectName');
+    projectNameLabel.textContent = 'Title';
+    projectNameDiv.appendChild(projectNameLabel);
+    projectNameDiv.appendChild(projectName);
+
+    const projectDescriptionDiv = document.createElement('div');
+    const projectDescription = document.createElement('textarea');
+    const projectDescriptionLabel = document.createElement('label');
+    projectDescription.setAttribute('name', 'projectDescription');
+    projectDescription.setAttribute('id', 'projectDescription');
+    projectDescription.setAttribute('placeholder', 'I am a multi-sport athlete engaged in climbing, basketball, hiking, etc');
+    projectDescriptionLabel.setAttribute('for', 'projectDescription');
+    projectDescriptionLabel.textContent = 'Description';
+    projectDescriptionDiv.appendChild(projectDescriptionLabel);
+    projectDescriptionDiv.appendChild(projectDescription);
+
+    const btns = document.createElement('div');
+    btns.classList.add('btns');
+    const submitBtn = document.createElement('button');
+    submitBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+    submitBtn.classList.add('submitProjectBtn');
+    const cancelBtn = document.createElement('button');
+    cancelBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
+    cancelBtn.classList.add('cancelProjectBtn');
+    btns.appendChild(submitBtn);
+    btns.appendChild(cancelBtn);
+
+    newModal.appendChild(projectModalHeader);
+    projectModalForm.appendChild(projectNameDiv);
+    projectModalForm.appendChild(projectDescriptionDiv);
+    projectModalForm.appendChild(btns);
+    newModal.appendChild(projectModalForm);
+
+    return {newModal, projectModalForm, projectName, projectDescription, submitBtn, cancelBtn};
+};
+
+
+export const createEditModal = (name, description, dueDate, priority) => {
     
     const newModal = document.createElement('dialog');
     newModal.classList.add('editModal');
@@ -30,7 +87,9 @@ const createEditModal = (name, description, dueDate, priority) => {
     taskDescription.setAttribute('name', 'taskDescription');
     taskDescription.setAttribute('id', 'taskDescription');
     taskDescription.setAttribute('placeholder', 'I avoid the acumulation of trash by performing the sacred art of removing said trash...');
+    console.log(description);
     taskDescription.setAttribute('value', description);
+    console.log(taskDescription.getAttribute('value'));
     taskDescriptionLabel.setAttribute('for', 'taskDescription');
     taskDescriptionLabel.textContent = 'Description';
     taskDescriptionDiv.appendChild(taskDescriptionLabel);
@@ -61,7 +120,8 @@ const createEditModal = (name, description, dueDate, priority) => {
     normalPriority.textContent = 'Normal';
     const lowPriority = document.createElement('option');
     lowPriority.textContent = 'Low';
-    taskPriority.setAttribute('value', priority);
+    console.log(priority);
+    taskPriority.value = priority;
     taskPriority.appendChild(highPriority);
     taskPriority.appendChild(normalPriority);
     taskPriority.appendChild(lowPriority);
@@ -90,5 +150,3 @@ const createEditModal = (name, description, dueDate, priority) => {
     return {newModal, editModalForm, taskName, taskDueDate, taskPriority, 
         taskDescription, submitBtn, cancelBtn};
 };
-
-export default createEditModal;

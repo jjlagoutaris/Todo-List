@@ -1,8 +1,8 @@
 import { Temporal } from "@js-temporal/polyfill";
-import { today, thisWeek } from "./currentDate";
+import { today, thisWeek } from "./time";
 
-const Todo = (title, description, dueDate, priority, id) => {
-    
+export const Todo = (title, description, dueDate, priority, id) => {
+
     const getTitle = () => title;
     const getDescription = () => description;
     const getDueDate = () => dueDate;
@@ -49,7 +49,6 @@ const Todo = (title, description, dueDate, priority, id) => {
     };
 
     return { getTitle, getDescription, getDueDate, getPriority, getID, setTitle, setDescription, 
-        setDueDate, setPriority, setID, convertedDate, isTodayCheck, isThisWeekCheck };
+        setDueDate, setPriority, setID, convertedDate, isTodayCheck, isThisWeekCheck, 
+    };
 };
-
-export default Todo;

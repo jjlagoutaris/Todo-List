@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,10 @@
     <script src="https://kit.fontawesome.com/14ceef9952.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="../src/img/todoList.png" type="image/x-icon">
 </head>
+
 <body>
+
+
     <dialog class="modal" id="modal">
         <h2>Create Task</h2>
         <form class="form" method="dialog">
@@ -21,7 +25,8 @@
             </div>
             <div class="taskDescriptionDiv">
                 <label for="createTaskDescription">Description</label>
-                <textarea name="createTaskDescription" id="createTaskDescription" placeholder="I avoid the acumulation of trash by performing the sacred art of removing said trash..."></textarea>
+                <textarea name="createTaskDescription" id="createTaskDescription"
+                    placeholder="I avoid the acumulation of trash by performing the sacred art of removing said trash..."></textarea>
             </div>
             <div class="taskDueDateDiv">
                 <label for="createTaskDueDate">Due Date</label>
@@ -39,19 +44,23 @@
             <button class="createModalCancelBtn"><i class="fa-solid fa-ban"></i></button>
         </form>
     </dialog>
+
+
     <div id="header">
         <img src="../src/img/todoList.png" alt="logo" class="logo">
         <div class="title">2Do or Not2Do</div>
     </div>
+
+
     <div id="content">
         <div class="sidebar">
             <ul>
-                <li class="link today"><a>Today<i class="fa-solid fa-exclamation"></i></a></li>
-                <li class="link week"><a>This Week<i class="fa-regular fa-calendar"></i></a></li>
+                <li class="link today">Today<i class="fa-solid fa-exclamation"></i></li>
+                <li class="link week">This Week<i class="fa-regular fa-calendar"></i></li>
                 <li class="link projectsLi">
-                    <a href="#">Projects<i class="fa-solid fa-arrow-down"></i></a>
-                    <ul class="projects">
-                        <li class="project defaultProject"><a><i class="fa-solid fa-basketball"></i>DEFAULT</a></li>
+                    <div>Projects<i class="fa-solid fa-bars-progress"></i></div>
+                    <ul id="projectsContainer">
+                        <li class="project defaultProject"><i class="fa-solid fa-masks-theater"></i>DEFAULT</li>
                     </ul>
                     <div><img src="../src/img/plus-circle.png" alt="add" class="addProjectBtn"></div>
                 </li>
@@ -61,8 +70,11 @@
             <table></table>
             <div class="addToDoBtn"><img src="../src/img/plus-circle.png" alt="add"></div>
         </div>
-        
     </div>
+
+    <div class="footer">John Lagoutaris &#169; 2022</div>
+
     <script src="main.js"></script>
 </body>
+
 </html>

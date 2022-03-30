@@ -1,4 +1,4 @@
-const Project = (title, description, index) => {
+export const Project = (title, description, index) => {
 
     let arr = [];
 
@@ -31,5 +31,3 @@ const Project = (title, description, index) => {
         filterTodaysToDos, filterThisWeeksToDos,
     };
 };
-
-export default Project;

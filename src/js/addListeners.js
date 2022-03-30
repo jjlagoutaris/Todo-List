@@ -1,26 +1,11 @@
 import _ from './documentParts';
 import defaults from './defaultProjects';
-import addToDoToTable from './addToDo';
-import createEditModal from './createEditModal';
-import { dateFilter } from './dateFilter';
-import { now } from './currentDate';
-import createProjectModal from './createProjectModal';
-import Project from './project';
-// import pageGeneration from './projectPageGeneration';
+import { addToDoToTable } from './addToDo';
+import { createEditModal, createProjectModal } from './createModals';
+import { dateFilter, now } from './time';
+import { Project } from './project';
 
-// function viewContents () {
-//     let list = defaults.listOfProjects;
-
-//     for (let i = 0; i < list.length; i++){
-//         console.log(list[i].getTitle());
-//         for(let j = 0; j < list[i].arr.length; j++){
-//             console.log(list[i].arr[j].getID());
-//         }
-//     }
-//     console.log('stop');
-// }
-
-const addEventListeners = () => {
+export const addEventListeners = () => {
     // viewContents();
     // remove toDo
     const trashBtns = document.querySelectorAll('.fa-trash-can');
@@ -46,7 +31,65 @@ const addEventListeners = () => {
     _.addToDoBtn.addEventListener('click', instantiateCreationModal);
     // create project modal
     _.addProjectBtn.addEventListener('click', instantiateProjectModal);
-}
+    // remove project modal
+    const removeProjectBtns = document.querySelectorAll('.fa-circle-minus');
+    for (let i = 0; i < removeProjectBtns.length; i++) {
+        removeProjectBtns[i].addEventListener('click', removeProject);
+    }
+    
+};
+
+
+// selectedProject ex. defaults.listOfProjects[defaults.currentProjectIndex]
+_.sidebar.addEventListener('click', (e) =>{
+    if(e.target.classList.contains('otherProjects')){
+        // setup
+        const projIndex = e.target.getAttribute('data-index');
+        defaults.currentProjectIndex = projIndex;
+        _.table.textContent = '';
+        // generateTableHeader 
+        let tr = document.createElement('tr');
+        tr.classList.add('titles');
+        let thProjName = document.createElement('th');
+        thProjName.classList.add('projName');
+        thProjName.textContent = defaults.listOfProjects[defaults.currentProjectIndex].getTitle().substring(0,30);
+        let thDueDate = document.createElement('th');
+        thDueDate.classList.add('dueDate');
+        thDueDate.innerHTML = `Due Date <i class="fa-solid fa-calendar-day"></i>`;
+        tr.appendChild(thProjName);
+        tr.appendChild(thDueDate);
+        _.table.appendChild(tr);
+        // generate rows
+        const makeRow = (row) => {
+            const tr = document.createElement('tr');
+            tr.classList.add('createdRow');
+            tr.setAttribute('data-index', `${row.getID()}`);
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+            td1.classList.add('column1');
+            td2.classList.add('column2');
+    
+            td1.innerHTML = `<i class="fa-regular fa-square"></i> ${row.getTitle()}`;
+            td2.innerHTML = `${dateFilter(row.getDueDate())} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
+    
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+    
+            return tr;
+        };
+    
+        for (let i = 0; i < defaults.listOfProjects[defaults.currentProjectIndex].arr.length; i++) {
+            _.table.appendChild(makeRow(defaults.listOfProjects[defaults.currentProjectIndex].arr[i]));
+        }
+
+        if(!_.toDoList.contains(_.addToDoBtn)){
+            _.toDoList.appendChild(_.addToDoBtn);
+        }
+        
+        // addEventListeners()
+        addEventListeners();
+    }
+});
 
 const deleteToDo = (e) => {
     const item = e.target;
@@ -55,22 +98,19 @@ const deleteToDo = (e) => {
 
     const removeFromArray = () => {
         let targetIndex = todo.getAttribute('data-index');
-        // remove from selected proj
-        for (let i = 0; i < defaults.listOfProjects[defaults.currentProjectIndex].arr.length; i++) {
-            if (defaults.listOfProjects[defaults.currentProjectIndex].arr[i].getID() == targetIndex) {
-                defaults.listOfProjects[defaults.currentProjectIndex].removeFromList(i);
-            }
-        }
-        // remove from everythingProj
-        for (let i = 0; i < defaults.listOfProjects[1].arr.length; i++) {
-            if (defaults.listOfProjects[1].arr[i].getID() == targetIndex) {
-                defaults.listOfProjects[1].removeFromList(i);
-            }
-        }
-    };
+        let list = defaults.listOfProjects;
+        let index = defaults.currentProjectIndex;
 
+        for (let i = 0; i < list[index].arr.length; i++) {
+            if (list[index].arr[i].getID() == targetIndex) {
+                list[index].removeFromList(i);
+                list[1].removeFromList(i);
+            }
+        }
+        
+    };
     removeFromArray();
-}
+};
 
 const completeToDo = (e) => {
     const item = e.target;
@@ -88,7 +128,7 @@ const undoToDoCompletion = (e) => {
     todo.classList.remove('completed');
     todo.innerHTML = todo.innerHTML.replace('<i class="fa-regular fa-square-check"></i>', '<i class="fa-regular fa-square"></i>');
     addEventListeners();
-}
+};
 
 const instantiateEditModal = (e) => {
 
@@ -100,11 +140,12 @@ const instantiateEditModal = (e) => {
     const getToDoInfo = () => {
         for (let i = 0; i < shortHand.arr.length; i++) {
             if (shortHand.arr[i].getID() == targetIndex) {
-                let name = shortHand.arr[i].getTitle();  
+                let name = shortHand.arr[i].getTitle();
                 let description = shortHand.arr[i].getDescription();
                 let dueDate = shortHand.arr[i].getDueDate();
                 let priority = shortHand.arr[i].getPriority();
-                return {name, description, dueDate, priority};
+                let id = i;
+                return { name, description, dueDate, priority, id };
             }
         }
     };
@@ -123,37 +164,30 @@ const instantiateEditModal = (e) => {
         e.preventDefault();
         form.newModal.close();
         _.body.removeChild(form.newModal);
-        addEventListeners(); 
+        addEventListeners();
     });
 
-    submitEditBtn.addEventListener('click', function submitEditModal(e){
+    submitEditBtn.addEventListener('click', function submitEditModal(e) {
         e.preventDefault();
-        for (let i = 0; i < shortHand.arr.length; i++) {
-            if (shortHand.arr[i].getID() == targetIndex) {
 
-                // update arr
-                shortHand.arr[i].setTitle(form.taskName.value);
-                shortHand.arr[i].setDescription(form.taskDescription.value);
-                shortHand.arr[i].setDueDate(form.taskDueDate.value);
-                shortHand.arr[i].setPriority(form.taskPriority.value);
+        // update Arr values
+        shortHand.arr[toDoInfo.id].setTitle(form.taskName.value);
+        shortHand.arr[toDoInfo.id].setDescription(form.taskDescription.value);
+        shortHand.arr[toDoInfo.id].setDueDate(form.taskDueDate.value);
+        shortHand.arr[toDoInfo.id].setPriority(form.taskPriority.value);
 
-                // update today/this week projects
-                // if(defaults.listOfProjects[2].arr[i].includes);
-
-                // update table
-
-                todo.children[0].innerHTML = `<i class="fa-regular fa-square"></i> ${form.taskName.value}`;
-                if (form.taskDueDate.value !== '') {
-                    let filteredDueDate = dateFilter(form.taskDueDate.value);
-                    todo.children[1].innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
-                }
-                else {
-                    todo.children[1].innerHTML = `<i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
-                }
-            }
+        // update table values
+        todo.children[0].innerHTML = `<i class="fa-regular fa-square"></i> ${form.taskName.value}`;
+        if (form.taskDueDate.value !== '') {
+            let filteredDueDate = dateFilter(form.taskDueDate.value);
+            todo.children[1].innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
         }
+        else {
+            todo.children[1].innerHTML = `<i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
+        }
+
         _.body.removeChild(form.newModal);
-        addEventListeners();   
+        addEventListeners();
     });
 };
 
@@ -163,10 +197,10 @@ const instantiateCreationModal = (e) => {
     _.modal.showModal();
 
     // set default date value to now
-    let dueDate = document.querySelector('#createTaskDueDate'); 
+    let dueDate = document.querySelector('#createTaskDueDate');
     dueDate.setAttribute("value", `${now()}`);
 
-    _.modalCancelBtn.addEventListener('click', function cancelCreationModal () {
+    _.modalCancelBtn.addEventListener('click', function cancelCreationModal() {
         _.modal.close();
     });
 
@@ -175,7 +209,7 @@ const instantiateCreationModal = (e) => {
 };
 
 const instantiateProjectModal = (e) => {
-    
+
     e.preventDefault();
 
     const proj = createProjectModal();
@@ -190,60 +224,56 @@ const instantiateProjectModal = (e) => {
         e.preventDefault();
         proj.newModal.close();
         _.body.removeChild(proj.newModal);
-        addEventListeners(); 
+        addEventListeners();
     });
 
     submitProjectBtn.addEventListener('click', function submitProjectModal(e) {
         e.preventDefault();
+
         // create new project
         const newProj = Project(proj.projectName.value, proj.projectDescription.value, defaults.projectCount);
         defaults.projectCount++;
 
+        proj.newModal.close();
+        _.body.removeChild(proj.newModal);
+
         // add new project to projects
-    
+
         defaults.listOfProjects.push(newProj);
-        // for(let i = 0; i < defaults.listOfProjects.length; i++){
-        //     console.log(defaults.listOfProjects[i].getTitle());
-        //     console.log(defaults.listOfProjects[i].getIndex());
-        // }
 
         // update html to show project
 
         const li = document.createElement('li');
         li.classList.add('project');
-        li.setAttribute('data-index', --defaults.projectCount);
+        li.classList.add('otherProjects');
+        li.setAttribute('data-index', defaults.projectCount - 1);
 
         let name = proj.projectName.value.toLowerCase();
-        name = name.charAt(0).toUpperCase() +  name.slice(1);
-        if (name.length > 12){
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        if (name.length > 12) {
             name = name.substring(0, 10) + '...';
         }
-        li.innerHTML = `<a><i class="fa-solid fa-basketball"></i>${name} <i class="fa-solid fa-circle-minus"></i></a>`;
+        li.innerHTML = `<i class="fa-solid fa-masks-theater"></i>${name} <i class="fa-solid fa-circle-minus"></i>`;
         _.projects.appendChild(li);
 
-        // create removal button for project
-
-        const removeProjectBtn = document.querySelector('.fa-circle-minus');
-        removeProjectBtn.addEventListener('click', (e) => {
-            let projects = e.target.parentElement.parentElement.parentElement;
-            let project = e.target.parentElement.parentElement;
-            for(let i = 0; i < defaults.listOfProjects.length; i++){
-                if(defaults.listOfProjects[i].getIndex() == project.getAttribute('data-index')){
-                    // splice out project
-                    let removedList = defaults.listOfProjects.splice(i, 1);
-                    // update everythingProj to remove these toDos
-                    defaults.listOfProjects[1].arr = defaults.listOfProjects[1].arr.filter( (el) => {
-                        return removedList[0].arr.indexOf(el) < 0;
-                    });
-                }
-            }
-            projects.removeChild(project);
-        });
-
         // update misc
-        _.body.removeChild(proj.newModal);
         addEventListeners();
     });
 };
 
-export default addEventListeners;
+
+const removeProject = (e) => {
+    let projects = e.target.parentElement.parentElement;
+    let project = e.target.parentElement;
+    for (let i = 0; i < defaults.listOfProjects.length; i++) {
+        if (defaults.listOfProjects[i].getIndex() == project.getAttribute('data-index')) {
+            // splice out project
+            let removedList = defaults.listOfProjects.splice(i, 1);
+            // update everythingProj to remove these toDos
+            defaults.listOfProjects[1].arr = defaults.listOfProjects[1].arr.filter((el) => {
+                return removedList[0].arr.indexOf(el) < 0;
+            });
+        }
+    }
+    projects.removeChild(project);
+};
