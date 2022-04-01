@@ -24,9 +24,8 @@ Things to add:
 > add warning when removing a project and an option to disable warning
 
 Things to fix: 
-> description and priority when editting a toDo is messed up
 > deleting a project causes issues for future projects
-
+    > caused when you make a proj, delete it and then try to switch to another project that you've created
 
 Schooled: 
 1X !!! first episode

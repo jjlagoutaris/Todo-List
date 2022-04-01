@@ -41,7 +41,7 @@ export const addEventListeners = () => {
 
 
 // selectedProject ex. defaults.listOfProjects[defaults.currentProjectIndex]
-_.sidebar.addEventListener('click', (e) =>{
+_.sidebar.addEventListener('click', (e) => {
     if(e.target.classList.contains('otherProjects')){
         // setup
         const projIndex = e.target.getAttribute('data-index');
@@ -52,6 +52,10 @@ _.sidebar.addEventListener('click', (e) =>{
         tr.classList.add('titles');
         let thProjName = document.createElement('th');
         thProjName.classList.add('projName');
+        console.log(defaults.listOfProjects);
+        console.log(defaults.listOfProjects[defaults.currentProjectIndex]);
+        console.log(defaults.listOfProjects[defaults.currentProjectIndex].getTitle());
+        console.log(defaults.listOfProjects[defaults.currentProjectIndex].getIndex());
         if (defaults.listOfProjects[defaults.currentProjectIndex].getTitle().length > 0){
             thProjName.textContent = defaults.listOfProjects[defaults.currentProjectIndex].getTitle().substring(0,30);
         }
@@ -276,16 +280,18 @@ const removeProject = (e) => {
     let projects = e.target.parentElement.parentElement;
     let project = e.target.parentElement;
     for (let i = 0; i < defaults.listOfProjects.length; i++) {
+        console.log(defaults.listOfProjects[i].getIndex());
+        console.log(project.getAttribute('data-index'));
         if (defaults.listOfProjects[i].getIndex() == project.getAttribute('data-index')) {
             // splice out project
-            let removedList = defaults.listOfProjects.splice(i, 1);
+            let removedList = defaults.listOfProjects[i];
             // update everythingProj to remove these toDos
             defaults.listOfProjects[1].arr = defaults.listOfProjects[1].arr.filter((el) => {
-                return removedList[0].arr.indexOf(el) < 0;
+                return removedList.arr.indexOf(el) < 0;
             });
         }
     }
-    defaults.currentProjectIndex = 0;
+    // defaults.currentProjectIndex = 0;
     projects.removeChild(project);
     // _.table.textContent = '';
 };
