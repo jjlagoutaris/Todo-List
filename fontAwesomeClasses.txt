@@ -18,10 +18,17 @@ circle-minus:
     <i class="fa-solid fa-circle-minus"></i>
 
 
-To Do:
-> add ability to view and remove (add warning and an option to disable warning) projects
-> 
+Things to add:
+> animations such as:
+    - Celebratory popup when a task is completed
+> add warning when removing a project and an option to disable warning
 
+Things to fix: 
+> description and priority when editting a toDo is messed up
+> deleting a project causes issues for future projects
+
+
+Schooled: 
 1X !!! first episode
 1help 2X !!! 2nd episode 
 lost to 2x boxbox !!! 3rd episode

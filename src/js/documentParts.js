@@ -25,12 +25,26 @@ const modalCancelBtn = document.querySelector('.createModalCancelBtn');
 const modalSubmitBtn = document.querySelector('.createModalSubmitBtn');
 
 const toDoCounter = 0;
+const disableWarning = false;
+
+const setPriorityColors = (value, el) => {
+  if(value === 'High'){
+    el.style = 'border-left: 10px solid red; border-radius: 10px;';
+  }
+  else if(value === 'Normal'){
+    el.style = 'border-left: 10px solid yellow; border-radius: 10px;';
+  }
+  else if(value === 'Low'){
+      el.style = 'border-left: 10px solid green; border-radius: 10px;';
+  }
+};
 
 export default {
 
   sidebar, body, todaysToDos, thisWeeksToDos, projects, defaultProject,
   toDoList, table, tableTitle, tableDueDate, addToDoBtn, toDoCounter, modal,
   creationModalTaskName, creationModalTaskDescription, creationModalTaskDueDate,
-  creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn
+  creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn,
+  disableWarning, setPriorityColors
 
 };

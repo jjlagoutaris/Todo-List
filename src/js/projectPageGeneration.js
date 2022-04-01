@@ -3,16 +3,16 @@ import defaults from './defaultProjects';
 import { addEventListeners } from './addListeners';
 import { dateFilter } from './time';
 
-const clearOldProject = () => {
-    _.table.textContent = '';
-};
-
-const generateProject = (selectedProject) => {
+export const generateProject = (selectedProject) => {
     defaults.currentProjectIndex = selectedProject.getIndex();
     clearOldProject();
     generateTableHeader(selectedProject);
     generateRows(selectedProject);
     addEventListeners();
+};
+
+const clearOldProject = () => {
+    _.table.textContent = '';
 };
 
 const generateTableHeader = (selectedProject) => {
@@ -40,6 +40,8 @@ const generateRows = (selectedProject) => {
             const td2 = document.createElement('td');
             td1.classList.add('column1');
             td2.classList.add('column2');
+
+            _.setPriorityColors(row.getPriority(), td1);
     
             td1.innerHTML = `${row.getTitle()}`;
             td2.innerHTML = `${dateFilter(row.getDueDate())}`;
@@ -66,6 +68,8 @@ const generateRows = (selectedProject) => {
             const td2 = document.createElement('td');
             td1.classList.add('column1');
             td2.classList.add('column2');
+
+            _.setPriorityColors(row.getPriority(), td1);
     
             td1.innerHTML = `<i class="fa-regular fa-square"></i> ${row.getTitle()}`;
             td2.innerHTML = `${dateFilter(row.getDueDate())} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
@@ -101,11 +105,7 @@ const generateDefaultToDos = () => {
     generateProject(defaults.defaultProj);
 };
 
-// const generateOtherProjects = () => {
-//     generateProject(defaults.listOfProjects[defaults.projIndex]);
-// };
-
-export const setupDefaultProjects = () => {
+const setupDefaultProjects = () => {
     _.todaysToDos.addEventListener('click', generateTodaysToDos);
     _.thisWeeksToDos.addEventListener('click', generateThisWeeksToDos);
     _.defaultProject.addEventListener('click', generateDefaultToDos);

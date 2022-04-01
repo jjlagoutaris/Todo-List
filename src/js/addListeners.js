@@ -52,7 +52,12 @@ _.sidebar.addEventListener('click', (e) =>{
         tr.classList.add('titles');
         let thProjName = document.createElement('th');
         thProjName.classList.add('projName');
-        thProjName.textContent = defaults.listOfProjects[defaults.currentProjectIndex].getTitle().substring(0,30);
+        if (defaults.listOfProjects[defaults.currentProjectIndex].getTitle().length > 0){
+            thProjName.textContent = defaults.listOfProjects[defaults.currentProjectIndex].getTitle().substring(0,30);
+        }
+        else{
+            thProjName.textContent = 'Unnamed';
+        }
         let thDueDate = document.createElement('th');
         thDueDate.classList.add('dueDate');
         thDueDate.innerHTML = `Due Date <i class="fa-solid fa-calendar-day"></i>`;
@@ -68,6 +73,8 @@ _.sidebar.addEventListener('click', (e) =>{
             const td2 = document.createElement('td');
             td1.classList.add('column1');
             td2.classList.add('column2');
+
+            _.setPriorityColors(row.getPriority(), td1);
     
             td1.innerHTML = `<i class="fa-regular fa-square"></i> ${row.getTitle()}`;
             td2.innerHTML = `${dateFilter(row.getDueDate())} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
@@ -85,7 +92,7 @@ _.sidebar.addEventListener('click', (e) =>{
         if(!_.toDoList.contains(_.addToDoBtn)){
             _.toDoList.appendChild(_.addToDoBtn);
         }
-        
+
         // addEventListeners()
         addEventListeners();
     }
@@ -117,8 +124,6 @@ const completeToDo = (e) => {
     const todo = item.parentElement.parentElement;
     todo.classList.add('completed');
     todo.innerHTML = todo.innerHTML.replace('<i class="fa-regular fa-square"></i>', '<i class="fa-regular fa-square-check"></i>');
-    console.log(defaults.listOfProjects[1].filterTodaysToDos());
-    console.log(defaults.listOfProjects[1].filterThisWeeksToDos());
     addEventListeners();
 };
 
@@ -145,6 +150,7 @@ const instantiateEditModal = (e) => {
                 let dueDate = shortHand.arr[i].getDueDate();
                 let priority = shortHand.arr[i].getPriority();
                 let id = i;
+                console.log(name, description, dueDate, priority, id);
                 return { name, description, dueDate, priority, id };
             }
         }
@@ -171,6 +177,7 @@ const instantiateEditModal = (e) => {
         e.preventDefault();
 
         // update Arr values
+
         shortHand.arr[toDoInfo.id].setTitle(form.taskName.value);
         shortHand.arr[toDoInfo.id].setDescription(form.taskDescription.value);
         shortHand.arr[toDoInfo.id].setDueDate(form.taskDueDate.value);
@@ -178,6 +185,9 @@ const instantiateEditModal = (e) => {
 
         // update table values
         todo.children[0].innerHTML = `<i class="fa-regular fa-square"></i> ${form.taskName.value}`;
+        
+        _.setPriorityColors(form.taskPriority.value, todo.children[0]);
+
         if (form.taskDueDate.value !== '') {
             let filteredDueDate = dateFilter(form.taskDueDate.value);
             todo.children[1].innerHTML = `${filteredDueDate} <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i>`;
@@ -231,7 +241,7 @@ const instantiateProjectModal = (e) => {
         e.preventDefault();
 
         // create new project
-        const newProj = Project(proj.projectName.value, proj.projectDescription.value, defaults.projectCount);
+        const newProj = Project(proj.projectName.value, defaults.projectCount);
         defaults.projectCount++;
 
         proj.newModal.close();
@@ -275,5 +285,7 @@ const removeProject = (e) => {
             });
         }
     }
+    defaults.currentProjectIndex = 0;
     projects.removeChild(project);
+    // _.table.textContent = '';
 };

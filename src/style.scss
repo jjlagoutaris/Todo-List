@@ -26,12 +26,12 @@ body{
     justify-content: flex-start;
     background-color: $HEADER;
     color: $FONT;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 900;
     gap: 1rem;
     width: 100%;
     .logo{
-        max-height: 5rem;
+        max-height: 4rem;
         padding: 5px;
     }
 }
@@ -45,7 +45,8 @@ body{
         padding: 10px;
         background-color: $SIDEBAR;
         li.projectsLi{
-            background-color: #80f0e4;
+            background-color: $LOGO-COLOR;
+            border-radius: 15px;
         }
         ul{
             text-align: center;
@@ -90,9 +91,11 @@ body{
         gap: 10px;
         background-color: $TODOLIST;
         table{
-            // margin-top: 10px;
+            padding: 10px;
+            margin-top: 10px;
             min-width: clamp(320px, 800px, 1000px);
             max-width: clamp(400px, 1200px, 1600px);
+            border-radius: 20px;
             .titles{
                 &:hover{
                     box-shadow: none;
@@ -163,25 +166,104 @@ i, .addToDoBtn, .addProjectBtn{
     opacity: 0.5;
     text-decoration: line-through;
 }
-.completed .column2{
-    text-decoration: none;
-}
 
 
 #modal, #editModal, #projectModal{
-    // padding: 1em;
-    top: 35%;
-    left: 40%;
-    max-width: 50ch;
+
+    margin: auto auto;
+    max-width: 100ch;
     padding: 10px;
-    // border: 0;
-    // box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    background-color: salmon;
+
+    h2{
+        letter-spacing: 5px;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .editForm, .projectForm, .form{
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        width: 350px;
+        gap: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        label, textarea, input[type="text"],
+        input[type="datetime-local"], .btns{
+            letter-spacing: 3px;
+            width: 200px;
+            font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        input, textarea, select{
+            background-color: white;
+        }
+        
+        label,
+        textarea {
+            letter-spacing: 1px;
+        }
+    
+        textarea {
+            padding: 10px;
+            max-width: 100%;
+            line-height: 1.5;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 1px #999;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    
+        input[type="text"]{
+            padding: 2px;
+        }
+    
+        .btns{
+            @include center;
+            gap: 5px;
+            .submitProjectBtn, .cancelProjectBtn, 
+            .createModalSubmitBtn, .createModalCancelBtn,
+            .cancelEditBtn, .submitEditBtn
+            {
+                background-color: greenyellow;
+                max-width: 50px;
+                padding: 10px;
+                &:hover{
+                    cursor: pointer;
+                    background-color: white;
+                }
+            }
+            .cancelEditBtn, .createModalCancelBtn, .cancelProjectBtn{
+                background-color: red;
+            }
+        }
+    }
 
     & > * {
     margin: 0 0 0.5rem 0;
     }
     &::backdrop{
     background: rgb(0 0 0 / 0.4);
+    }
+
+}
+
+#projectModal{
+    .projectForm{
+        height: 120px;
+        width: 250px;
     }
 }
 

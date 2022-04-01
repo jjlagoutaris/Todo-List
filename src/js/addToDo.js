@@ -15,6 +15,8 @@ export const addToDoToTable = () => {
         td1.classList.add('column1');
         td2.classList.add('column2');
 
+        _.setPriorityColors(createTaskPriority.value, td1);
+
         td1.innerHTML = `<i class="fa-regular fa-square"></i> ${createTaskName.value}`;
         if (createTaskDueDate.value !== '') {
             let filteredDueDate = dateFilter(createTaskDueDate.value);

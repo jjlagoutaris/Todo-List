@@ -5,28 +5,23 @@ const listOfProjects = [];
 let currentProjectIndex = 0;
 let projectCount = 0;
 
-let sampleObj = Todo('Default Task', 'Default Description', "2022-03-29T03:52", "High", 20, "Everything");
-let sampleObj2 = Todo('Today Task', 'Default Description', "2022-03-29T03:52", "High", 30, "Everything");
-let sampleObj3 = Todo('Week Task', 'Default Description', "2022-03-29T03:52", "High", 40, "Everything");
+let sampleObj = Todo('Sample Task', 'Default Description', "2022-03-29T03:52", "High", 0, "Everything");
 
-const defaultProj = Project("Default", "The default grouping for toDos", projectCount);
+const defaultProj = Project("General", projectCount);
 listOfProjects.push(defaultProj);
 projectCount++;
-defaultProj.addToList(sampleObj);
+// defaultProj.addToList(sampleObj);
 
-const everythingProj = Project("Everything", "Every toDo", projectCount);
+const everythingProj = Project("Everything", projectCount);
 projectCount++;
 listOfProjects.push(everythingProj);
-everythingProj.addToList(sampleObj);
-everythingProj.addToList(sampleObj2);
-everythingProj.addToList(sampleObj3);
+// everythingProj.addToList(sampleObj);
 
-const todaysToDos = Project("Today's 2Dos", "Today's Tasks", projectCount);
+const todaysToDos = Project("Today's 2Dos", projectCount);
 projectCount++;
 listOfProjects.push(todaysToDos);
 
-
-const thisWeeksToDos = Project("This Week's 2Dos", "This week's projects", projectCount);
+const thisWeeksToDos = Project("Week's 2Dos", projectCount);
 projectCount++;
 listOfProjects.push(thisWeeksToDos);
 

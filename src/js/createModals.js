@@ -23,35 +23,25 @@ export const createProjectModal = () => {
     projectNameDiv.appendChild(projectNameLabel);
     projectNameDiv.appendChild(projectName);
 
-    const projectDescriptionDiv = document.createElement('div');
-    const projectDescription = document.createElement('textarea');
-    const projectDescriptionLabel = document.createElement('label');
-    projectDescription.setAttribute('name', 'projectDescription');
-    projectDescription.setAttribute('id', 'projectDescription');
-    projectDescription.setAttribute('placeholder', 'I am a multi-sport athlete engaged in climbing, basketball, hiking, etc');
-    projectDescriptionLabel.setAttribute('for', 'projectDescription');
-    projectDescriptionLabel.textContent = 'Description';
-    projectDescriptionDiv.appendChild(projectDescriptionLabel);
-    projectDescriptionDiv.appendChild(projectDescription);
-
     const btns = document.createElement('div');
     btns.classList.add('btns');
     const submitBtn = document.createElement('button');
     submitBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
     submitBtn.classList.add('submitProjectBtn');
+    submitBtn.setAttribute('type', 'button');
     const cancelBtn = document.createElement('button');
     cancelBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
     cancelBtn.classList.add('cancelProjectBtn');
+    submitBtn.setAttribute('type', 'button');
     btns.appendChild(submitBtn);
     btns.appendChild(cancelBtn);
 
     newModal.appendChild(projectModalHeader);
     projectModalForm.appendChild(projectNameDiv);
-    projectModalForm.appendChild(projectDescriptionDiv);
     projectModalForm.appendChild(btns);
     newModal.appendChild(projectModalForm);
 
-    return {newModal, projectModalForm, projectName, projectDescription, submitBtn, cancelBtn};
+    return {newModal, projectModalForm, projectName, submitBtn, cancelBtn};
 };
 
 
@@ -87,9 +77,7 @@ export const createEditModal = (name, description, dueDate, priority) => {
     taskDescription.setAttribute('name', 'taskDescription');
     taskDescription.setAttribute('id', 'taskDescription');
     taskDescription.setAttribute('placeholder', 'I avoid the acumulation of trash by performing the sacred art of removing said trash...');
-    console.log(description);
-    taskDescription.setAttribute('value', description);
-    console.log(taskDescription.getAttribute('value'));
+    taskDescription.value = description;
     taskDescriptionLabel.setAttribute('for', 'taskDescription');
     taskDescriptionLabel.textContent = 'Description';
     taskDescriptionDiv.appendChild(taskDescriptionLabel);
@@ -111,7 +99,7 @@ export const createEditModal = (name, description, dueDate, priority) => {
     const taskPriority = document.createElement('select');
     const taskPriorityLabel = document.createElement('label');
     taskPriority.setAttribute('name', 'taskPriority');
-    taskPriority.setAttribute('id', 'taskPriority');
+    taskPriority.setAttribute('id', 'taskPriorityEdit');
     taskPriorityLabel.setAttribute('for', 'taskPriority');
     taskPriorityLabel.textContent = 'Priority';
     const highPriority = document.createElement('option');
@@ -120,11 +108,13 @@ export const createEditModal = (name, description, dueDate, priority) => {
     normalPriority.textContent = 'Normal';
     const lowPriority = document.createElement('option');
     lowPriority.textContent = 'Low';
-    console.log(priority);
-    taskPriority.value = priority;
+
     taskPriority.appendChild(highPriority);
     taskPriority.appendChild(normalPriority);
     taskPriority.appendChild(lowPriority);
+
+    taskPriority.value = priority;
+    
     taskPriorityDiv.appendChild(taskPriorityLabel);
     taskPriorityDiv.appendChild(taskPriority);
 
@@ -133,9 +123,11 @@ export const createEditModal = (name, description, dueDate, priority) => {
     const submitBtn = document.createElement('button');
     submitBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
     submitBtn.classList.add('submitEditBtn');
+    submitBtn.setAttribute('type', 'button');
     const cancelBtn = document.createElement('button');
     cancelBtn.innerHTML = `<i class="fa-solid fa-ban"></i>`;
     cancelBtn.classList.add('cancelEditBtn');
+    submitBtn.setAttribute('type', 'button');
     btns.appendChild(submitBtn);
     btns.appendChild(cancelBtn);
 

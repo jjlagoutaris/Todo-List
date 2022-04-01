@@ -1,13 +1,11 @@
-export const Project = (title, description, index) => {
+export const Project = (title, index) => {
 
     let arr = [];
 
     const getTitle = () => title;
-    const getDescription = () => description;
     const getIndex = () => index;
     
     const setTitle = (newTitle) => title = newTitle; 
-    const setDescription = (newDescription) => description = newDescription;
     const setIndex = (newIndex) => index = newIndex;
 
     const addToList = (obj) => arr.push(obj);
@@ -26,8 +24,8 @@ export const Project = (title, description, index) => {
         return thisWeeksToDos;
     }
 
-    return {getTitle, getDescription, getIndex, setTitle, 
-        setDescription, setIndex, arr, addToList, removeFromList,
+    return {getTitle, getIndex, setTitle, 
+        setIndex, arr, addToList, removeFromList,
         filterTodaysToDos, filterThisWeeksToDos,
     };
 };
