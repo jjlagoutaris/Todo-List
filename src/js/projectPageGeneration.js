@@ -87,11 +87,17 @@ const generateRows = (selectedProject) => {
         if(!_.toDoList.contains(_.addToDoBtn)){
             _.toDoList.appendChild(_.addToDoBtn);
         }
-    }
+    }            
 
 };
 
 const generateTodaysToDos = () => {
+    // let a = defaults.listOfProjects[1].filterTodaysToDos();
+    // console.log(a);
+    // for(let i = 0; i < a.length; i++){
+    //     console.log(a[i].getTitle());
+    // }
+
     defaults.listOfProjects[2].arr.splice(0, defaults.listOfProjects[2].arr.length, ...defaults.listOfProjects[1].filterTodaysToDos());
     generateProject(defaults.todaysToDos);
 };

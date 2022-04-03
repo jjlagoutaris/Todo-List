@@ -52,10 +52,7 @@ _.sidebar.addEventListener('click', (e) => {
         tr.classList.add('titles');
         let thProjName = document.createElement('th');
         thProjName.classList.add('projName');
-        console.log(defaults.listOfProjects);
-        console.log(defaults.listOfProjects[defaults.currentProjectIndex]);
-        console.log(defaults.listOfProjects[defaults.currentProjectIndex].getTitle());
-        console.log(defaults.listOfProjects[defaults.currentProjectIndex].getIndex());
+
         if (defaults.listOfProjects[defaults.currentProjectIndex].getTitle().length > 0){
             thProjName.textContent = defaults.listOfProjects[defaults.currentProjectIndex].getTitle().substring(0,30);
         }
@@ -154,7 +151,6 @@ const instantiateEditModal = (e) => {
                 let dueDate = shortHand.arr[i].getDueDate();
                 let priority = shortHand.arr[i].getPriority();
                 let id = i;
-                console.log(name, description, dueDate, priority, id);
                 return { name, description, dueDate, priority, id };
             }
         }
@@ -280,18 +276,32 @@ const removeProject = (e) => {
     let projects = e.target.parentElement.parentElement;
     let project = e.target.parentElement;
     for (let i = 0; i < defaults.listOfProjects.length; i++) {
-        console.log(defaults.listOfProjects[i].getIndex());
-        console.log(project.getAttribute('data-index'));
         if (defaults.listOfProjects[i].getIndex() == project.getAttribute('data-index')) {
+            
             // splice out project
-            let removedList = defaults.listOfProjects[i];
+            let removedList = defaults.listOfProjects[i].arr;
+            let removedListIndexes = [];
+            
             // update everythingProj to remove these toDos
-            defaults.listOfProjects[1].arr = defaults.listOfProjects[1].arr.filter((el) => {
-                return removedList.arr.indexOf(el) < 0;
-            });
+            for(let j = 0; j < removedList.length; j++){
+                removedListIndexes.push(removedList[j].getID());
+            }
+            
+            const removeFromArray = () => {
+                let list = defaults.listOfProjects;
+                let length = removedListIndexes.length;
+                for(let k = 0; k < length; k++){
+                    list[i].removeFromList(removedListIndexes[k]-k);
+                    list[1].removeFromList(removedListIndexes[k]-k);
+                }
+            };
+            removeFromArray();
+
         }
     }
-    // defaults.currentProjectIndex = 0;
     projects.removeChild(project);
-    // _.table.textContent = '';
+    _.table.textContent = '';
+    if(_.toDoList.contains(_.addToDoBtn)){
+        _.toDoList.removeChild(_.addToDoBtn);
+    }
 };
