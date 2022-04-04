@@ -9,9 +9,15 @@ export const Project = (title, index) => {
     const setIndex = (newIndex) => index = newIndex;
 
     const addToList = (obj) => arr.push(obj);
-    const removeFromList = (index) => {
-        if(index > -1){
-            arr.splice(index, 1);
+    const removeFromList = (targetID) => {
+        let index;
+        for(let i = 0; i < arr.length; i++){
+            if (arr[i].getID() == targetID){
+                index = i;
+            }
+            if(index > -1){
+                arr.splice(index, 1);
+            }
         }
     };
 

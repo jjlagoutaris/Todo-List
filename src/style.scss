@@ -1,5 +1,4 @@
 @import './scss/globals';
-@import './scss/container';
 
 @mixin center {
     display: flex;
@@ -44,10 +43,6 @@ body{
         font-size: 1.5rem;
         padding: 10px;
         background-color: $SIDEBAR;
-        li.projectsLi{
-            background-color: $LOGO-COLOR;
-            border-radius: 15px;
-        }
         ul{
             text-align: center;
             list-style-type: none;
@@ -57,6 +52,13 @@ body{
                 color: $SIDEBAR_TEXT;
                 text-shadow: 1px 1px white;
             }
+            .today, .week{
+                cursor: pointer;
+            }
+        }
+        li.projectsLi{
+            background-color: $LOGO-COLOR;
+            border-radius: 15px;
         }
         li.projectsLi ul{
             padding: 10px;
@@ -91,7 +93,6 @@ body{
         gap: 10px;
         background-color: $TODOLIST;
         table{
-            padding: 10px;
             margin-top: 10px;
             min-width: clamp(320px, 800px, 1000px);
             max-width: clamp(400px, 1200px, 1600px);
@@ -120,7 +121,7 @@ body{
                 td{
                     vertical-align: middle;
                     max-width: 600px;
-                    padding: 10px;
+                    padding: 10px 0 10px 10px;
                 }
                 .column1{
                     font-size: 1.5rem;
@@ -138,7 +139,7 @@ body{
                 td{
                     vertical-align: middle;
                     max-width: 600px;
-                    padding: 10px;
+                    padding: 10px 0 10px 10px;
                 }
                 .column1{
                     font-size: 1.5rem;
@@ -157,6 +158,9 @@ body{
 
 i, .addToDoBtn, .addProjectBtn{
     cursor: pointer;
+}
+.fa-calendar-day, .fa-bars-progress{
+    cursor: default;
 }
 .fa-bars-progress, .fa-calendar, .fa-exclamation, .fa-calendar-day{
     margin-left: 10px;
@@ -198,18 +202,13 @@ i, .addToDoBtn, .addProjectBtn{
 
         label, textarea, input[type="text"],
         input[type="datetime-local"], .btns{
-            letter-spacing: 3px;
+            letter-spacing: 1px;
             width: 200px;
             font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         
         input, textarea, select{
             background-color: white;
-        }
-        
-        label,
-        textarea {
-            letter-spacing: 1px;
         }
     
         textarea {
@@ -227,7 +226,7 @@ i, .addToDoBtn, .addProjectBtn{
         }
     
         input[type="text"]{
-            padding: 2px;
+            padding: 5px;
         }
     
         .btns{
@@ -268,7 +267,7 @@ i, .addToDoBtn, .addProjectBtn{
 }
 
 .footer{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 10px;
     background-color: #80f0e4;

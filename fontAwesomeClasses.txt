@@ -26,7 +26,7 @@ Things to add in final version:
 > add warning when removing a project and an option to disable warning
 
 Things to fix: 
-> 
+> deleting a project removes the wrong toDos from today/thisWeek
 
 Schooled: 
 1X !!! first episode

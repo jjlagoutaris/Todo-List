@@ -110,9 +110,10 @@ const deleteToDo = (e) => {
         let index = defaults.currentProjectIndex;
 
         for (let i = 0; i < list[index].arr.length; i++) {
-            if (list[index].arr[i].getID() == targetIndex) {
-                list[index].removeFromList(i);
-                list[1].removeFromList(i);
+            let id = list[index].arr[i].getID();
+            if (id == targetIndex) {
+                list[index].removeFromList(id);
+                list[1].removeFromList(id);
             }
         }
         
@@ -291,8 +292,8 @@ const removeProject = (e) => {
                 let list = defaults.listOfProjects;
                 let length = removedListIndexes.length;
                 for(let k = 0; k < length; k++){
-                    list[i].removeFromList(removedListIndexes[k]-k);
-                    list[1].removeFromList(removedListIndexes[k]-k);
+                    list[i].removeFromList(removedListIndexes[k]);
+                    list[1].removeFromList(removedListIndexes[k]);
                 }
             };
             removeFromArray();
