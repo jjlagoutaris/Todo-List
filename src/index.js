@@ -5,30 +5,44 @@ import './js/projectPageGeneration';
 import { addEventListeners } from './js/addListeners';
 import defaults from './js/defaultProjects';
 
-if(!localStorage.getItem('projects')){
-  populateStorage();
-} else{
-  retrieveStorage();
+export function save() {
+  localStorage.setItem(defaults.lists_key, JSON.stringify(defaults.listOfProjects));
+  localStorage.setItem(defaults.current_list_id, defaults.currentProjectIndex);
+  console.log(localStorage);
+  console.log(defaults.listOfProjects.length);
 }
 
-function retrieveStorage() {
-  let listOfProjects_deserialized = JSON.parse(localStorage.getItem('projects'));
-  console.log(listOfProjects_deserialized);
-}
+// export function render() {
+//     if(currentProjectIndex == 0){
+//         generateDefaultToDos();
+//     }
+// }
 
-function populateStorage() {
-  let listOfProjects_serialized = JSON.stringify(defaults.listOfProjects);
-  localStorage.setItem('projects', listOfProjects_serialized);
-  console.log(listOfProjects_serialized);
+// isolate the elements into which the changes go
+// 
+
+// if(!localStorage.getItem('projects')){
+//   populateStorage();
+// } else{
+//   retrieveStorage();
+// }
+
+// function retrieveStorage() {
+//   let listOfProjects_deserialized = JSON.parse(localStorage.getItem('projects'));
+//   console.log(listOfProjects_deserialized);
+// }
+
+// function populateStorage() {
+//   let listOfProjects_serialized = JSON.stringify(defaults.listOfProjects);
+//   localStorage.setItem('projects', listOfProjects_serialized);
+//   console.log(listOfProjects_serialized);
   
-  retrieveStorage();
-}
+//   retrieveStorage();
+// }
 
-populateStorage();
+// populateStorage();
 
-console.log(localStorage);
-
-defaults.listOfProjects.onchange = populateStorage;
+// defaults.listOfProjects.onchange = populateStorage;
 
 // The following will permaclear the localStorage
 // localStorage.clear(); 

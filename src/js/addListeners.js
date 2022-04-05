@@ -6,7 +6,6 @@ import { dateFilter, now } from './time';
 import { Project } from './project';
 
 export const addEventListeners = () => {
-    // viewContents();
     // remove toDo
     const trashBtns = document.querySelectorAll('.fa-trash-can');
     for (let i = 0; i < trashBtns.length; i++) {
@@ -41,7 +40,9 @@ export const addEventListeners = () => {
 
 
 // selectedProject ex. defaults.listOfProjects[defaults.currentProjectIndex]
-_.sidebar.addEventListener('click', (e) => {
+_.sidebar.addEventListener('click', loadProject);
+
+export function loadProject (e) {
     if(e.target.classList.contains('otherProjects')){
         // setup
         const projIndex = e.target.getAttribute('data-index');
@@ -97,7 +98,7 @@ _.sidebar.addEventListener('click', (e) => {
         // addEventListeners()
         addEventListeners();
     }
-});
+};
 
 const deleteToDo = (e) => {
     const item = e.target;
@@ -268,6 +269,7 @@ const instantiateProjectModal = (e) => {
         _.projects.appendChild(li);
 
         // update misc
+        defaults.save();
         addEventListeners();
     });
 };
@@ -301,7 +303,7 @@ const removeProject = (e) => {
         }
     }
     projects.removeChild(project);
-    _.table.textContent = '';
+    _.table.textContent = 'Please select a project';
     if(_.toDoList.contains(_.addToDoBtn)){
         _.toDoList.removeChild(_.addToDoBtn);
     }

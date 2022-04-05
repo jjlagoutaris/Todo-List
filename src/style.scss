@@ -273,3 +273,16 @@ i, .addToDoBtn, .addProjectBtn{
     background-color: #80f0e4;
     text-align: center;
 }
+
+
+// animation
+
+.fa-circle-plus, 
+.fa-github, 
+.fa-linkedin,
+.svg{
+    transition-duration: 0.75s;
+    transform: rotate(720deg) scale(1.5);
+    cursor: pointer;
+}
+

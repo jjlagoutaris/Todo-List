@@ -1,7 +1,7 @@
 import _ from './documentParts';
 import { Todo } from './todo';
 import defaults from './defaultProjects';
-import { dateFilter, convertDate, now, thisWeekCheck, todayCheck } from './time';
+import { dateFilter, now } from './time';
 import { addEventListeners } from './addListeners';
 
 export const addToDoToTable = () => {
@@ -40,19 +40,12 @@ export const addToDoToTable = () => {
     
     _.toDoCounter++;
 
-    let convertedDate = convertDate(createTaskDueDate);
-
-    if (todayCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)) {
-        defaults.listOfProjects[2].addToList(toDoObj);
-    }
-    if (thisWeekCheck(convertedDate.dd_year, convertedDate.dd_month, convertedDate.dd_day)){
-        defaults.listOfProjects[3].addToList(toDoObj);
-    }
-
     defaults.listOfProjects[defaults.currentProjectIndex].addToList(toDoObj);
     defaults.listOfProjects[1].addToList(toDoObj);
 
     _.table.appendChild(row);
+    defaults.save();
+    // set default values
     createTaskName.value = '';
     createTaskDescription.value = '';
     createTaskDueDate.value = now();

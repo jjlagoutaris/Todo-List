@@ -91,17 +91,17 @@ const generateRows = (selectedProject) => {
 
 };
 
-const generateTodaysToDos = () => {
+export const generateTodaysToDos = () => {
     defaults.listOfProjects[2].arr.splice(0, defaults.listOfProjects[2].arr.length, ...defaults.listOfProjects[1].filterTodaysToDos());
     generateProject(defaults.todaysToDos);
 };
 
-const generateThisWeeksToDos = () => {
+export const generateThisWeeksToDos = () => {
     defaults.listOfProjects[3].arr.splice(0, defaults.listOfProjects[3].arr.length, ...defaults.listOfProjects[1].filterThisWeeksToDos());
     generateProject(defaults.thisWeeksToDos);
 };
 
-const generateDefaultToDos = () => {
+export const generateDefaultToDos = () => {
     generateProject(defaults.defaultProj);
 };
 
@@ -109,8 +109,7 @@ const setupDefaultProjects = () => {
     _.todaysToDos.addEventListener('click', generateTodaysToDos);
     _.thisWeeksToDos.addEventListener('click', generateThisWeeksToDos);
     _.defaultProject.addEventListener('click', generateDefaultToDos);
+    generateProject(defaults.listOfProjects[defaults.currentProjectIndex]);
 };
 
 setupDefaultProjects();
-
-generateProject(defaults.listOfProjects[defaults.currentProjectIndex]);

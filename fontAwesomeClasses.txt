@@ -16,6 +16,10 @@ basketball:
     <i class="fa-solid fa-basketball"></i>
 circle-minus:
     <i class="fa-solid fa-circle-minus"></i>
+github:
+    <i class="fa-brands fa-github"></i>
+linkedin:
+    <i class="fa-brands fa-linkedin"></i>
 
 
 Notes:
