@@ -25,7 +25,6 @@ const modalCancelBtn = document.querySelector('.createModalCancelBtn');
 const modalSubmitBtn = document.querySelector('.createModalSubmitBtn');
 
 const toDoCounter = 0;
-// const disableWarning = false;
 
 const setPriorityColors = (value, el) => {
   if(value === 'High'){
@@ -46,6 +45,5 @@ export default {
   creationModalTaskName, creationModalTaskDescription, creationModalTaskDueDate,
   creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn,
   setPriorityColors,
-  // disableWarning
 
 };

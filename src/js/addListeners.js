@@ -269,7 +269,6 @@ const instantiateProjectModal = (e) => {
         _.projects.appendChild(li);
 
         // update misc
-        defaults.save();
         addEventListeners();
     });
 };

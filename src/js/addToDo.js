@@ -44,7 +44,6 @@ export const addToDoToTable = () => {
     defaults.listOfProjects[1].addToList(toDoObj);
 
     _.table.appendChild(row);
-    defaults.save();
     // set default values
     createTaskName.value = '';
     createTaskDescription.value = '';
