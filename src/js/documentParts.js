@@ -38,12 +38,13 @@ const setPriorityColors = (value, el) => {
   }
 };
 
+const plusCircleDiv = document.getElementById('plusCircleDiv');
+
 export default {
 
   sidebar, body, todaysToDos, thisWeeksToDos, projects, defaultProject,
   toDoList, table, tableTitle, tableDueDate, addToDoBtn, toDoCounter, modal,
   creationModalTaskName, creationModalTaskDescription, creationModalTaskDueDate,
-  creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn,
-  setPriorityColors,
+  creationModalTaskPriority, editModal, modalCancelBtn, modalSubmitBtn, addProjectBtn, setPriorityColors, plusCircleDiv
 
 };

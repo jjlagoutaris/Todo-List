@@ -2,12 +2,12 @@ import { Project } from './project';
 import { Todo } from './todo';
 
 
-localStorage.clear();
+// localStorage.clear();
 
 const listOfProjects = JSON.parse(localStorage.getItem('lists')) || [];
 let currentProjectIndex = localStorage.getItem('listID') || 0;
 
-let a=Todo('hi', 'hi', '2022-03-22T03:45', 'High', 10);
+let a = Todo('hi', 'hi', '2022-03-22T03:45', 'High', 10);
 
 let projectCount = 0;
 
@@ -29,5 +29,7 @@ projectCount++;
 listOfProjects.push(thisWeeksToDos);
 
 
-export default { listOfProjects, currentProjectIndex, projectCount,
-    defaultProj, todaysToDos, thisWeeksToDos };
+export default {
+    listOfProjects, currentProjectIndex, projectCount,
+    defaultProj, todaysToDos, thisWeeksToDos
+};

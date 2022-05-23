@@ -15,7 +15,7 @@ export const Todo = (title, description, dueDate, priority, id) => {
     const setPriority = (newPriority) => priority = newPriority;
     const setID = (newID) => id = newID;
 
-    // pass in getDueDate() to get Temporal-friendly date format
+    // pass in value from getDueDate() to get Temporal-friendly date format
     const convertedDate = (calendarDate) => {
         let dd_date = calendarDate.substring(0, 10);
         return { dd_date };
